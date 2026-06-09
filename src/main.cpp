@@ -1,12 +1,22 @@
 //#include <stdio.h>
 //#include "pico/stdlib.h"
-//#include "pico/cyw43_arch.h"
-//#include "LCD_1in3.h"
-#include "LCD_Test.h" 
+// #include "pico/cyw43_arch.h"
+extern "C" {
+    #include "LCD_1in3.h"
+    #include "LCD_Test.h" 
+    #include "ImageData.h"
+}
+
+#include "core/Display.h"
 
 int main(void)
 {
-    LCD_1in3_test();
+    Display display;
+    display.init();
+    display.clear(BLACK);
+    display.drawImage(gImage_1inch3_1, 0, 0, 240, 240); // Display the image on the screen
+    // display.setPixel(10, 10, RED); // Set a pixel at (10, 10) to red
+    display.render();
 
     // // Initialise the Wi-Fi chip
     // if (cyw43_arch_init()) {

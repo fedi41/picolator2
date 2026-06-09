@@ -45,7 +45,6 @@ add_subdirectory(lib/GUI)
 add_subdirectory(examples)
 
 
-
 # add header file directory
 include_directories(examples)
 include_directories(./lib/Config)
@@ -54,11 +53,16 @@ include_directories(./lib/Icm20948)
 include_directories(./lib/LCD)
 include_directories(./lib/Infrared)
 include_directories(./lib/OLED)
+include_directories(src)
 
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(picolator2 src/main.c )
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+)
+
+add_executable(picolator2 ${SOURCES})
 
 pico_set_program_name(picolator2 "picolator2")
 pico_set_program_version(picolator2 "0.1")
