@@ -5,55 +5,68 @@ extern "C" {
     #include "GUI_Paint.h"
 }
 
+#include "graphics/Color.h"
+#include <string>
+
+
 class Display {
 public:
-    void init();
+    void init(int alphaColor = 1);
     void render();
+    void renderIfDirty() {
+        if (dirty) {
+            render();
+        }
+    }
 
-    void clear(UWORD color);
+    void clear(int color);
 
-    void setPixel(UWORD x, UWORD y, UWORD color);
+    void setPixel(int x, int y, int color);
 
-    void drawPoint(UWORD x, UWORD y, UWORD color,
+    // SHAPES
+    void drawPoint(int x, int y, int color,
                    DOT_PIXEL dotPixel,
                    DOT_STYLE dotStyle);
-
-    void drawLine(UWORD xStart, UWORD yStart,
-                  UWORD xEnd, UWORD yEnd,
-                  UWORD color,
+                   
+    void drawLine(int xStart, int yStart,
+                  int xEnd, int yEnd,
+                  int color,
                   LINE_STYLE lineStyle,
                   DOT_PIXEL lineWidth);
 
-    void drawRectangle(UWORD xStart, UWORD yStart,
-                       UWORD xEnd, UWORD yEnd,
-                       UWORD color,
+    void drawRectangle(int xStart, int yStart,
+                       int xEnd, int yEnd,
+                       int color,
                        DRAW_FILL fill,
                        DOT_PIXEL lineWidth);
 
-    void drawCircle(UWORD xCenter, UWORD yCenter,
-                    UWORD radius,
-                    UWORD color,
+    void drawCircle(int xCenter, int yCenter,
+                    int radius,
+                    int color,
                     DRAW_FILL fill,
                     DOT_PIXEL lineWidth);
 
-    void drawString(UWORD x,
-                    UWORD y,
-                    const char* text,
+    // TEXT
+    void drawString(int x,
+                    int y,
+                    const std::string& text,
                     sFONT* font,
-                    UWORD bgColor,
-                    UWORD fgColor);
+                    int bgColor,
+                    int fgColor,
+                    bool center = false);
 
-    void drawNumber(UWORD x,
-                    UWORD y,
-                    int number,
-                    sFONT* font,
-                    UWORD bgColor,
-                    UWORD fgColor);
+    // IMAGES 
 
     void drawBitmap(const unsigned char* bitmap);
-    void drawImage(const unsigned char *image, UWORD xStart, UWORD yStart, UWORD W_Image, UWORD H_Image);
+    void drawImage(const unsigned char *image, int xStart, int yStart, int W_Image, int H_Image);
+
+    bool dirty = false;
+
 
 private:
     UWORD* frameBuffer = nullptr;
     uint32_t bufferSize = 0;
+    int alphaColor = 0;
+    int width = LCD_1IN3_WIDTH;
+    int height = LCD_1IN3_HEIGHT;
 };

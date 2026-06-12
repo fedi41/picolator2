@@ -8,34 +8,37 @@ extern "C" {
 }
 
 #include "core/Display.h"
+#include "core/Input.h"
+#include "apps/TestApp.h"
+#include "apps/App.h"
 
 int main(void)
 {
+    // LCD_1in3_test();
+
+
     Display display;
+    Input input;
+
     display.init();
-    display.clear(BLACK);
+    // display.clear(BLACK);
+    input.init();
+    
     display.drawImage(gImage_1inch3_1, 0, 0, 240, 240); // Display the image on the screen
-    // display.setPixel(10, 10, RED); // Set a pixel at (10, 10) to red
-    display.render();
 
-    // // Initialise the Wi-Fi chip
-    // if (cyw43_arch_init()) {
-    //     printf("Wi-Fi init failed\n");
-    //     return -1;
-    // }
 
-    // // Example to turn on the Pico W LED
-    // cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
+    TestApp testApp;
+    App* currentApp = &testApp;
+    currentApp->init();
 
-    // bool led = true;
 
-    // while (true) {
-    //     printf("Hello, world!\n");
-    //     led = !led;
-    //     cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
-        
-    //     sleep_ms(1000);
-        
-    // }
+    while (true) {
+
+        currentApp->update();
+
+        currentApp->renderIfDirty(display); // Only render if there are changes to the app
+        display.renderIfDirty(); // Only render if there are changes to the display
+    }
+
     return 0;
 }
