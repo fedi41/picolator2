@@ -544,14 +544,16 @@ void Paint_DrawChar(UWORD Xpoint, UWORD Ypoint, const char Acsii_Char,
         {
 
             // To determine whether the font background color and screen background color is consistent
-            if (*ptr & (0x80 >> (Column % 8)) && !bgColorTransparent)
+            if (*ptr & (0x80 >> (Column % 8)))
             {
-                Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Background);
+                if (!bgColorTransparent) {
+                    Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Foreground);
+                }
                 // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Foreground, DOT_PIXEL_DFT, DOT_STYLE_DFT);
             }
             else if (!fgColorTransparent)
             {
-                Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Foreground);
+                Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Background);
                 // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Background, DOT_PIXEL_DFT, DOT_STYLE_DFT);
             }
             // One pixel is 8 bits

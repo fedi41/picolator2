@@ -7,7 +7,7 @@ extern "C" {
 
 #include "TestApp.h"
 #include "core/Display.h"
-#include "graphics/Color.h"
+#include "graphics/UiDraw.h"
 
 void TestApp::init() {
     // Initialize the main screen app
@@ -17,7 +17,8 @@ void TestApp::init() {
 void TestApp::render(Display& display) {
     // Render the main screen app
     display.clear(GREEN);
-    display.drawString(10, 10, "Hello, World!", &Font20, WHITE, 1);
+    UiDraw::heading("Heading", WHITE, BLUE, BLUE);
+    //UiDraw::centeredString(10, "Hello, World!", WHITE, BLACK, false, true);
     //display.drawNumber(10, 40, counter, &Font20, WHITE, BLACK);
 
 

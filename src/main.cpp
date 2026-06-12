@@ -11,6 +11,7 @@ extern "C" {
 #include "core/Input.h"
 #include "apps/TestApp.h"
 #include "apps/App.h"
+#include "graphics/UiDraw.h"
 
 int main(void)
 {
@@ -24,7 +25,11 @@ int main(void)
     // display.clear(BLACK);
     input.init();
     
-    display.drawImage(gImage_1inch3_1, 0, 0, 240, 240); // Display the image on the screen
+    UiDraw::image(gImage_1inch3_1, 0, 0, 240, 240); // Display the image on the screen
+
+    display.render();
+
+    DEV_Delay_ms(1000);
 
 
     TestApp testApp;
