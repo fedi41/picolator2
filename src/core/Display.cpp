@@ -7,7 +7,7 @@ extern "C" {
 #include <sstream>
 #include "Display.h"
 #include "graphics/Colors.h"
-
+#include "fonts/fonts.h"
 
 void Display::init(Color alpha) {
     DEV_Module_Init();
@@ -67,26 +67,23 @@ void Display::drawChar(
     const char asciiChar,
     Color fgColor,
     Color bgColor,
-    sFONT* font,
+    FONT* font,
     int scale
 ) {
     if (x >= width || y >= height) {
         return;
     }
 
-    const uint32_t charOffset =
-        (asciiChar - ' ') *
-        font->Height *
-        (font->Width / 8 + (font->Width % 8 ? 1 : 0));
+    const char* glyph =
+        font->table + asciiChar * font->Height;
 
-    const unsigned char* ptr = &font->table[charOffset];
+    for (int row = 0; row < font->Height; row++) {
+        uint8_t bits = glyph[row];
 
-    for (uint16_t row = 0; row < font->Height; row++) {
-        for (uint16_t col = 0; col < font->Width; col++) {
-
-            const bool pixelSet =
-                (*ptr & (0x80 >> (col % 8))) != 0;
-            const int scaledCol = col*scale;
+        for (int col = 0; col < font->Width; col++) {
+            bool pixelSet = bits & (0x80 >> col);
+            
+            const int scaledCol = (font->Width - col)*scale;
             const int scaledRow = row*scale;
 
             if (pixelSet) {
@@ -99,13 +96,6 @@ void Display::drawChar(
                         );
                     }
                 }
-
-                // setPixel(
-                //     x + col,
-                //     y + row,
-                //     GREEN
-                // );
-                
             } else {
                 for (int ox = 0; ox < scale; ox++){
                     for (int oy = 0; oy < scale; oy++){
@@ -117,14 +107,6 @@ void Display::drawChar(
                     }
                 }
             }
-
-            if ((col % 8) == 7) {
-                ptr++;
-            }
-        }
-
-        if (font->Width % 8 != 0) {
-            ptr++;
         }
     }
 }
@@ -135,8 +117,8 @@ void Display::drawString(
     const std::string& text,
     Color fgColor,
     Color bgColor,
-    bool center, 
-    sFONT* font,
+    bool center,
+    FONT* font,
     int scale
 )
 {
@@ -145,8 +127,8 @@ void Display::drawString(
     int Ypoint = y;
 
     if (center) {
-        int textWidth = text.length() * font->Width;
-        Xpoint = x - textWidth * scale / 2; 
+        int textWidth = text.length() * font->Width * scale;
+        Xpoint = x - textWidth / 2; 
     }
 
 
@@ -174,12 +156,13 @@ void Display::drawCenteredString(
         const std::string& text,
         int color,
         int bgColor,
-        sFONT* font,
-        int scale
+        FONT* font,
+        int scale,
+        int offset
     ) 
 {
     drawString(
-        width / 2,
+        width / 2 + offset,
         y,
         text,
         color, 

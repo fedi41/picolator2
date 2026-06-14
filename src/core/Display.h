@@ -2,10 +2,10 @@
 
 extern "C" {
     #include "LCD_1in3.h"
-    #include "lib/Fonts/fonts.h"
 }
 
 #include <string>
+#include "fonts/fonts.h"
 
 using Color = uint16_t;
 
@@ -29,7 +29,7 @@ public:
         const char c, 
         Color fgColor, 
         Color bgColor, 
-        sFONT* font,
+        FONT* font,
         int scale = 1
     );
     void drawString(
@@ -39,7 +39,7 @@ public:
         Color fgColor,
         Color bgColor,
         bool center, 
-        sFONT* font,
+        FONT* font,
         int scale = 1
     );
     void drawImage(
@@ -54,8 +54,9 @@ public:
         const std::string& text,
         int color,
         int bgColor,
-        sFONT* font,
-        int scale = 1
+        FONT* font,
+        int scale = 1,
+        int offset = 0
     );
     void drawWindow(
         int x,
