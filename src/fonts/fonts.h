@@ -10,7 +10,7 @@ typedef struct
 } FONT;
 
 
-extern FONT Font5x8;
+extern FONT Font6x8;
 extern FONT Font4x6;
 extern FONT Font12x16;
 extern FONT Font24x40;

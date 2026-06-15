@@ -11,38 +11,39 @@ extern "C" {
 #define KEY_X 2
 #define KEY_Y 3
 
-#define KEY_UP 4
+
 #define KEY_DOWN 5
 #define KEY_LEFT 6
 #define KEY_RIGHT 7
-#define KEY_CTRL 8
+#define KEY_UP 8
+#define KEY_CTRL 9
 
 
 class Input {
     public:
-        void init(  
+        static void init(  
                     short keyA = 15,
                     short keyB = 17,
                     short keyX = 19, 
                     short keyY = 21,
 
                     short up = 2,
-	                short dowm = 18,
+	                short down = 18,
 	                short left = 16,
 	                short right = 20,
 	                short ctrl = 3
                 );
-        bool isButtonPressed(int button);
+        static bool isKeyPressed(int button);
 
     private:
-        short keyA;
-        short keyB;
-        short keyX; 
-        short keyY;
+        static inline short keyA = 15;
+        static inline short keyB = 17;
+        static inline short keyX = 19; 
+        static inline short keyY = 21;
 
-        short up;
-        short dowm;
-        short left;
-        short right;
-        short ctrl;
+        static inline short up = 2;
+	    static inline short down = 18;
+	    static inline short left = 16;
+	    static inline short right = 20;
+	    static inline short ctrl = 3;
 };

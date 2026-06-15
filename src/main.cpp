@@ -11,6 +11,7 @@ extern "C" {
 #include "core/Input.h"
 #include "apps/TestApp.h"
 #include "apps/App.h"
+#include "apps/MainApp.h"
 
 int main(void)
 {
@@ -18,11 +19,10 @@ int main(void)
 
 
     Display display;
-    Input input;
 
     display.init();
     // display.clear(BLACK);
-    input.init();
+    Input::init();
     
     display.drawImage(gImage_1inch3_1, 0, 0, 240, 240); // Display the image on the screen
 
@@ -32,7 +32,8 @@ int main(void)
 
 
     TestApp testApp;
-    App* currentApp = &testApp;
+    MainApp mainApp;
+    App* currentApp = &mainApp;
     currentApp->init();
 
 

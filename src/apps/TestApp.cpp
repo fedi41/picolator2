@@ -7,7 +7,7 @@ extern "C" {
 #include "TestApp.h"
 #include "core/Display.h"
 #include "fonts/fonts.h"
-#include "graphics/Colors.h"
+#include "gfx/Colors.h"
 
 void TestApp::init() {
     // Initialize the main screen app
@@ -19,9 +19,9 @@ void TestApp::render(Display& display) {
     display.clear(BLACK);
     display.drawCenteredString(10, "PICOLATOR", RED, display.alpha, &Font4x6, 5, -5);
 
-    display.drawString(3, 50, "Lorem Ipsum!!", YELLOW, display.alpha, false, &Font5x8, 2);
-    display.drawString(3, 70, "Hello World!", YELLOW, display.alpha, false, &Font5x8, 2);
-    display.drawString(3, 90, "WOoooww", YELLOW, display.alpha, false, &Font5x8, 2);
+    display.drawString(3, 50, "Lorem Ipsum!!", YELLOW, display.alpha, false, &Font6x8, 2);
+    display.drawString(3, 70, "Hello World!", YELLOW, display.alpha, false, &Font6x8, 2);
+    display.drawString(3, 90, "WOoooww", YELLOW, display.alpha, false, &Font6x8, 2);
     display.drawString(3, 110, "abcdefghijklmnopqrstuvwxyz", YELLOW, display.alpha, false, &Font4x6, 2);
     //UiDraw::centeredString(10, "Hello, World!", WHITE, BLACK, false, true);
     //display.drawNumber(10, 40, counter, &Font20, WHITE, BLACK);

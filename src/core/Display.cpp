@@ -6,10 +6,10 @@ extern "C" {
 #include <string>
 #include <sstream>
 #include "Display.h"
-#include "graphics/Colors.h"
+#include "gfx/Colors.h"
 #include "fonts/fonts.h"
 
-void Display::init(Color alpha) {
+void Display::init(Color a) {
     DEV_Module_Init();
 
     DEV_SET_PWM(50);
@@ -21,7 +21,7 @@ void Display::init(Color alpha) {
 
     clear(WHITE);
 
-    this->alpha = alpha;
+    alpha = a;
 }
 void Display::clear(uint16_t color) {
     for (int i = 0; i < bufferSize; i++) {
