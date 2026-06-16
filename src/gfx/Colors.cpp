@@ -88,43 +88,44 @@ uint16_t HSLtoInt(ColorHSL hsl) {
            (b >> 3);
 }
 
+// Relative Änderungen gegenüber der Basisfarbe (=500)
+static const float lightnessDelta[] = {
+    +0.35f, // 50
+    +0.28f, // 100
+    +0.20f, // 200
+    +0.12f, // 300
+    +0.06f, // 400
+     0.00f, // 500
+    -0.08f, // 600
+    -0.16f, // 700
+    -0.26f, // 800
+    -0.38f, // 900
+    -0.48f  // 950
+};
 
+// Weniger Sättigung an den Extremen
+static const float saturationMul[] = {
+    0.35f, // 50
+    0.50f, // 100
+    0.70f, // 200
+    0.85f, // 300
+    0.95f, // 400
+    1.00f, // 500
+    0.95f, // 600
+    0.85f, // 700
+    0.70f, // 800
+    0.55f, // 900
+    0.40f  // 950
+};
 
-ColorHSL tailwindShade(ColorHSL base, TailwindShade shade) {
-    // Relative Änderungen gegenüber der Basisfarbe (=500)
-    static const float lightnessDelta[] = {
-        +0.35f, // 50
-        +0.28f, // 100
-        +0.20f, // 200
-        +0.12f, // 300
-        +0.06f, // 400
-         0.00f, // 500
-        -0.08f, // 600
-        -0.16f, // 700
-        -0.26f, // 800
-        -0.38f, // 900
-        -0.48f  // 950
-    };
+ColorHSL tailwindShade(ColorHSL base, int shade) {
 
-    // Weniger Sättigung an den Extremen
-    static const float saturationMul[] = {
-        0.35f, // 50
-        0.50f, // 100
-        0.70f, // 200
-        0.85f, // 300
-        0.95f, // 400
-        1.00f, // 500
-        0.95f, // 600
-        0.85f, // 700
-        0.70f, // 800
-        0.55f, // 900
-        0.40f  // 950
-    };
 
     ColorHSL out = base;
+    float shadePercent = float(shade)/11;
 
-    out.l += lightnessDelta[shade];
-    out.s *= saturationMul[shade];
+    out.l += shadePercent-0.5;
+    //out.s *= saturationMul[shade];
 
     // Clamp
     out.l = std::clamp(out.l, 0.0f, 1.0f);
@@ -133,20 +134,24 @@ ColorHSL tailwindShade(ColorHSL base, TailwindShade shade) {
     return out;
 }
 
-TailwindColor TailwindColor::fromHSL(ColorHSL hsl) {
-        return {
-            {
-                HSLtoInt(tailwindShade(hsl, TW50)),
-                HSLtoInt(tailwindShade(hsl, TW100)),
-                HSLtoInt(tailwindShade(hsl, TW200)),
-                HSLtoInt(tailwindShade(hsl, TW300)),
-                HSLtoInt(tailwindShade(hsl, TW400)),
-                HSLtoInt(tailwindShade(hsl, TW500)),
-                HSLtoInt(tailwindShade(hsl, TW600)),
-                HSLtoInt(tailwindShade(hsl, TW700)),
-                HSLtoInt(tailwindShade(hsl, TW800)),
-                HSLtoInt(tailwindShade(hsl, TW900)),
-                HSLtoInt(tailwindShade(hsl, TW950))
-            }
-        };
+TailwindPalette TailwindPalette::fromHSL(ColorHSL hsl) {
+    uint16_t out[11];
+
+    int baseColorId = hsl.l * 11;
+    int shadeOffset = baseColorId - 5;
+
+    for (int i = 0; i < 11; ++i) {
+        //out[i] = HSLtoInt(simpleTailwindShade(hsl, i));
+        out[i] = HSLtoInt(tailwindShade(hsl, i-shadeOffset));
+
+    }
+    
+    
+    return TailwindPalette(out, baseColorId);
+}
+TailwindPalette::TailwindPalette(const uint16_t *colors, int baseColorId) {
+    for (int i = 0; i < 11; ++i) {
+        shades[i] = colors[i];
+    }
+    this->baseColorId = baseColorId;
 }

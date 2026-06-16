@@ -5,9 +5,9 @@
 struct Theme
 {
 
-    TailwindColor surface;
-    TailwindColor primary;
-    TailwindColor secondary;
+    TailwindPalette surface;
+    TailwindPalette primary;
+    TailwindPalette secondary;
 
     uint16_t onSurface;
     uint16_t onPrimary;

@@ -27,7 +27,7 @@ int main(void)
 
     Display::render();
 
-    DEV_Delay_ms(250);
+    // DEV_Delay_ms(250);
 
     Display::drawPlaceholder(0,0,240,240);
     Display::render();

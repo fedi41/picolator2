@@ -38,18 +38,25 @@ struct ColorRGB
 {
     uint8_t r, g, b;
 };
-struct TailwindColor {
-    uint16_t shades[11];
 
-    constexpr uint16_t base() const {
-        return shades[5]; // 500
-    }
+class TailwindPalette {
+    public:
+        uint16_t shades[11];
+        int baseColorId = 5;
 
-    constexpr uint16_t operator[](int i) const {
-        return shades[i];
-    }
+        constexpr uint16_t base() const {
+            return shades[baseColorId]; // 500
+        }
 
-    static TailwindColor fromHSL(ColorHSL hsl);
+        constexpr uint16_t operator[](int i) const {
+            return shades[i];
+        }
+
+        static TailwindPalette fromHSL(ColorHSL hsl);
+    
+    private:
+        TailwindPalette(const uint16_t colors[11], int baseColorId);
+       
 };
 
 
