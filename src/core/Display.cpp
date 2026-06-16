@@ -9,7 +9,7 @@ extern "C" {
 #include "gfx/Colors.h"
 #include "fonts/fonts.h"
 
-void Display::init(Color a) {
+void Display::init(uint16_t a) {
     DEV_Module_Init();
 
     DEV_SET_PWM(50);
@@ -43,7 +43,7 @@ void Display::render() {
 void Display::setPixel(
     int x,
     int y,
-    Color color
+    uint16_t color
 ) {
     if (color == alpha) {return;}
 
@@ -65,8 +65,8 @@ void Display::drawChar(
     int x,
     int y,
     const char asciiChar,
-    Color fgColor,
-    Color bgColor,
+    uint16_t fgColor,
+    uint16_t bgColor,
     FONT* font,
     int scale
 ) {
@@ -115,8 +115,8 @@ void Display::drawString(
     int x,
     int y,
     const std::string& text,
-    Color fgColor,
-    Color bgColor,
+    uint16_t fgColor,
+    uint16_t bgColor,
     bool center,
     FONT* font,
     int scale
@@ -154,8 +154,8 @@ void Display::drawString(
 void Display::drawCenteredString(
         int y,
         const std::string& text,
-        int color,
-        int bgColor,
+        uint16_t color,
+        uint16_t bgColor,
         FONT* font,
         int scale,
         int offset
@@ -173,7 +173,7 @@ void Display::drawCenteredString(
     );
 }
 
-void Display::drawWindow(int Xstart, int Ystart, int Xend, int Yend, Color Color)
+void Display::drawRect(int Xstart, int Ystart, int Xend, int Yend, uint16_t Color)
 {
     int X, Y;
     for (Y = Ystart; Y < Yend; Y++)
@@ -202,3 +202,14 @@ void Display::drawImage(const unsigned char *image, int xStart, int yStart, int 
     }
 }
 
+void Display::drawPlaceholder(int x, int y, int xx, int yy) {
+
+    int w2 = (xx-x)/2;
+    int h2 = (yy-y)/2;
+
+    drawRect(x,y,x+w2,y+h2,MAGENTA);
+    drawRect(x+w2,y,xx,y+h2,BLACK);
+    drawRect(x,y+h2,x+w2,yy,BLACK);
+    drawRect(x+w2,y+h2,xx,yy,MAGENTA);
+
+}

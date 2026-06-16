@@ -7,12 +7,12 @@ public:
     virtual ~App() = default;
 
     virtual void init() = 0;
-    virtual void render(Display& display) = 0;
+    virtual void render() = 0;
     virtual void update() = 0;
 
-    void renderIfDirty(Display& display) {
+    void renderIfDirty() {
         if (dirty) {
-            render(display);
+            render();
         }
         dirty = false;
     }

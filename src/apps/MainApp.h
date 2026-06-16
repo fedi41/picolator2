@@ -1,14 +1,14 @@
 #pragma once
 
 #include "App.h"
+#include "templates/Menu.h"
 
-class MainApp : public App {
-    public:
-        void init() override;
-        void render(Display& display) override;
-        void update() override;
+class MainApp : public Menu {
 
-    private:
-        int app_list ;
-        int pointer_pos ; 
+    void init();
+    // void render();
+    // void update();
+
+    protected:
+
 };

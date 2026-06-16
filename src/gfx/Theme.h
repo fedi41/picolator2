@@ -1,17 +1,17 @@
 #pragma once
+#include "Colors.h"
+
 
 struct Theme
 {
-    int surface;
-    int onSurface;
-    
-    int primary;
-    int onPrimary;
-    int primaryContainer;
 
-    int secondary;
-    int onSecondary;
-    int secondaryContainer;
+    TailwindColor surface;
+    TailwindColor primary;
+    TailwindColor secondary;
+
+    uint16_t onSurface;
+    uint16_t onPrimary;
+    uint16_t onSecondary;
 };
 
 

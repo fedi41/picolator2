@@ -18,31 +18,35 @@ int main(void)
     // LCD_1in3_test();
 
 
-    Display display;
 
-    display.init();
-    // display.clear(BLACK);
+    Display::init();
+    Display::clear(BLACK);
     Input::init();
     
-    display.drawImage(gImage_1inch3_1, 0, 0, 240, 240); // Display the image on the screen
+    Display::drawImage(gImage_1inch3_1, 0, 0, 240, 240); // Display the image on the screen
 
-    display.render();
+    Display::render();
 
-    DEV_Delay_ms(1000);
+    DEV_Delay_ms(250);
+
+    Display::drawPlaceholder(0,0,240,240);
+    Display::render();
 
 
     TestApp testApp;
     MainApp mainApp;
-    App* currentApp = &mainApp;
+    App* currentApp = &testApp;
     currentApp->init();
+
+    currentApp->render();
 
 
     while (true) {
 
         currentApp->update();
 
-        currentApp->renderIfDirty(display); // Only render if there are changes to the app
-        display.renderIfDirty(); // Only render if there are changes to the display
+        currentApp->renderIfDirty(); // Only render if there are changes to the app
+        Display::renderIfDirty(); // Only render if there are changes to the display
     }
 
     return 0;

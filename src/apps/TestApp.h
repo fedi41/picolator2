@@ -6,7 +6,7 @@
 class TestApp : public App {
     public:
         void init() override;
-        void render(Display& display) override;
+        void render() override;
         void update() override;
 
     private:
