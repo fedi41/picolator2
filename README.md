@@ -3,9 +3,10 @@
 https://github.com/user-attachments/assets/24e997ce-0cfe-4a95-80da-4d27f19e4859
 
 # PICOLATOR V2
-> A **custom OS** for the Raspberry pi pico 2w, written in **C++**
-> When makin this project, I was inspired by the Flipper Zero.
-<img width="720" height="371" alt="photo_2026-06-18_14-41-17" src="https://github.com/user-attachments/assets/7da51e7e-7aec-4f68-bd15-21e7f8d53491" />
+A **custom OS** for the Raspberry pi pico 2w, written in **C++**
+
+<img width="669" height="336" alt="photo_2026-06-18_15-29-03" src="https://github.com/user-attachments/assets/01a0856d-54fe-4e2f-9b28-93de863d2f96" />
+
 ## Features
 - Text rendering (different font and scale supported)
 - Image rendering (yes it can render real images)
@@ -30,9 +31,7 @@ https://stardance.hackclub.com/projects/4738
 
 ## more Photos
 
+<img width="720" height="371" alt="photo_2026-06-18_14-41-17" src="https://github.com/user-attachments/assets/7da51e7e-7aec-4f68-bd15-21e7f8d53491" />
 <img width="550" height="512" alt="photo_2026-06-16_19-28-25" src="https://github.com/user-attachments/assets/332011bf-5f12-4f13-ae0d-d763a1568d05" />
-
-
-
 <img width="1280" height="720" alt="photo_2026-06-16_19-31-13" src="https://github.com/user-attachments/assets/ec44bb18-9c39-4905-9853-6759af014d52" />
 
