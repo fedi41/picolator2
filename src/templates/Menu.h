@@ -10,8 +10,8 @@
 class Menu : public App {
 
     void render() override;
-    void init() override;
     void update() override;
+    void init() override;
 
     protected:
         int scroll = 0;

@@ -8,7 +8,4 @@ class MainApp : public Menu {
     void init();
     // void render();
     // void update();
-
-    protected:
-
 };

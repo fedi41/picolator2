@@ -8,10 +8,7 @@ struct Theme
     TailwindPalette surface;
     TailwindPalette primary;
     TailwindPalette secondary;
-
-    uint16_t onSurface;
-    uint16_t onPrimary;
-    uint16_t onSecondary;
+    
 };
 
 

@@ -5,9 +5,11 @@
 #include <algorithm>
 
 uint16_t RGBtoInt(ColorRGB rgb) {
-    return ((rgb.r >> 3) << 11) |
-           ((rgb.g >> 2) << 5)  |
-           (rgb.b >> 3);
+    return __builtin_bswap16(
+    ((rgb.r >> 3) << 11) |
+    ((rgb.g >> 2) << 5)  |
+    (rgb.b >> 3)
+);
 }
 
 ColorRGB HSLtoRGB(ColorHSL hsl) {
@@ -83,9 +85,11 @@ uint16_t HSLtoInt(ColorHSL hsl) {
     uint8_t g = (uint8_t)((g1 + m) * 255.0f + 0.5f);
     uint8_t b = (uint8_t)((b1 + m) * 255.0f + 0.5f);
 
-    return ((r >> 3) << 11) |
-           ((g >> 2) << 5)  |
-           (b >> 3);
+    return __builtin_bswap16(
+    ((r >> 3) << 11) |
+    ((g >> 2) << 5)  |
+    (b >> 3)
+);
 }
 
 // Relative Änderungen gegenüber der Basisfarbe (=500)
@@ -140,14 +144,14 @@ TailwindPalette TailwindPalette::fromHSL(ColorHSL hsl) {
     int baseColorId = hsl.l * 11;
     int shadeOffset = baseColorId - 5;
 
-    for (int i = 0; i < 11; ++i) {
+    for (int i = 0; i <= 11; ++i) {
         //out[i] = HSLtoInt(simpleTailwindShade(hsl, i));
-        out[i] = HSLtoInt(tailwindShade(hsl, i-shadeOffset));
+        out[11-i] = HSLtoInt(tailwindShade(hsl, i-shadeOffset));
 
     }
     
     
-    return TailwindPalette(out, baseColorId);
+    return TailwindPalette(out, 11-baseColorId);
 }
 TailwindPalette::TailwindPalette(const uint16_t *colors, int baseColorId) {
     for (int i = 0; i < 11; ++i) {

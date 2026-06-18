@@ -18,14 +18,22 @@ void Display::init(uint16_t a) {
     LCD_1IN3_Clear(WHITE);
 
     frameBuffer = new UWORD[bufferSize];
+    frameBufferOverlay = new UWORD[bufferSize];
 
     clear(WHITE);
 
     alpha = a;
+    // alphaSwapped = (a >> 8) | (a << 8);
 }
 void Display::clear(uint16_t color) {
-    for (int i = 0; i < bufferSize; i++) {
-        frameBuffer[i] = color;
+    if (overlayMode) {
+        for (int i = 0; i < bufferSize; i++) {
+            frameBufferOverlay[i] = color;
+        }
+    } else {
+        for (int i = 0; i < bufferSize; i++) {
+            frameBuffer[i] = color;
+        }
     }
 
     dirty = true;
@@ -35,9 +43,52 @@ void Display::render() {
         return;
     }
 
-    LCD_1IN3_Display(frameBuffer);
-
+    if (renderOverlay) {
+        UWORD* displayBuffer = new UWORD[bufferSize];
+        for (int i = 0; i < bufferSize; i++) {
+            if (frameBufferOverlay[i] == alpha) {
+                displayBuffer[i] = frameBuffer[i];
+            } else {
+                switch (overlayBlendMode)
+                {
+                case NORMAL:
+                    displayBuffer[i] = frameBufferOverlay[i];
+                    break;
+                case DIFFERENCE:
+                    displayBuffer[i] = frameBufferOverlay[i]^frameBuffer[i];
+                    break;
+                
+                default:
+                    break;
+                }
+            }
+        }
+        LCD_1IN3_Display(displayBuffer);
+        delete[] displayBuffer;
+    } else {
+        LCD_1IN3_Display(frameBuffer);
+    }
     dirty = false;
+}
+
+int rotateIndex(int x, int y, int width, int height, int rotation)
+{
+    switch(rotation)
+    {
+        case 0:
+            return y * width + x;
+
+        case 90:
+            return x * height + (height - 1 - y);
+
+        case 180:
+            return (height - 1 - y) * width + (width - 1 - x);
+
+        case 270:
+            return (width - 1 - x) * height + y;
+    }
+
+    return -1;
 }
 
 void Display::setPixel(
@@ -54,12 +105,22 @@ void Display::setPixel(
         return;
     }
 
-    frameBuffer[y * width + x] =
-    (color >> 8) |
-    (color << 8);
 
+    int id = rotateIndex(x,y,width,height,0);
+    uint16_t c = color;
+    if (drawBlendMode == DIFFERENCE) {
+        c = color ^ (overlayMode ? frameBufferOverlay[id] : frameBuffer[id]);
+    }
+
+    if (overlayMode) {
+        frameBufferOverlay[id] = c;
+    } else {
+        frameBuffer[id] = c;
+    }
     dirty = true;
 }
+
+//// SECOND LEVEL METHODS ////
 
 void Display::drawChar(
     int x,
@@ -186,18 +247,11 @@ void Display::drawRect(int Xstart, int Ystart, int Xend, int Yend, uint16_t Colo
 }
 
 
-void Display::drawImage(const unsigned char *image, int xStart, int yStart, int W_Image, int H_Image)
+void Display::drawImage(const uint16_t *image, int xStart, int yStart, int W_Image, int H_Image)
 {
-    int i, j;
-    for (j = 0; j < H_Image; j++)
-    {
-        for (i = 0; i < W_Image; i++)
-        {
-            if (xStart + i < width && yStart + j < height) // Exceeded part does not display
-                setPixel(xStart + i, yStart + j, (*(image + j * W_Image * 2 + i * 2 + 1)) << 8 | (*(image + j * W_Image * 2 + i * 2)));
-            // Using arrays is a property of sequential storage, accessing the original array by algorithm
-            // j*W_Image*2 			   Y offset
-            // i*2              	   X offset
+    for (int y = yStart; y < H_Image; y++) {
+        for (int x = xStart; x < W_Image; x++) {
+            setPixel(x, y, image[y * W_Image + x]);
         }
     }
 }

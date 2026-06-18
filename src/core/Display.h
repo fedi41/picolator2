@@ -7,16 +7,14 @@ extern "C" {
 #include <string>
 #include "fonts/fonts.h"
 
+enum BlendMode {
+    NORMAL, DIFFERENCE
+};
 
 class Display {
 public:
     static void init(uint16_t alpha = 34564);
     static void render();
-    static void renderIfDirty() {
-        if (Display::dirty) {
-            render();
-        }
-    }
 
     static void clear(uint16_t color);
 
@@ -42,7 +40,7 @@ public:
         int scale = 1
     );
     static void drawImage(
-        const unsigned char *image, 
+        const uint16_t *image, 
         int xStart, 
         int yStart, 
         int W_Image, 
@@ -74,9 +72,15 @@ public:
     static inline bool dirty = false;
     static const int width = LCD_1IN3_WIDTH;
     static const int height = LCD_1IN3_HEIGHT;
-    static inline uint16_t alpha = 0x0000;
+    static inline uint16_t alpha = 0;
 
+    static inline bool overlayMode = false;
+    static inline bool renderOverlay = false;
+    static inline BlendMode overlayBlendMode = NORMAL;
+    static inline BlendMode drawBlendMode = NORMAL;
 private:
     static inline UWORD* frameBuffer = nullptr;
+    static inline UWORD* frameBufferOverlay = nullptr;
     static const uint32_t bufferSize = width * height;
 };
+
