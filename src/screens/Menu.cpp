@@ -10,13 +10,13 @@ void Menu::render() {
     // Logger::d("Menu render");
 
     // BG
-    Display::clear(CURRENT_THEME.surface[2]);
+    Display::clear(CURRENT_THEME->surface[2]);
 
     // HEADING
-    Display::drawRect(0,0,240,50, CURRENT_THEME.primary[8]);
+    Display::drawRect(0,0,240,50, CURRENT_THEME->primary[8]);
 
-    Display::drawCenteredString(11, heading, CURRENT_THEME.primary[2], Display::alpha, &Font6x8, 4, -3);
-    Display::drawCenteredString(8, heading, CURRENT_THEME.primary[5], Display::alpha, &Font6x8, 4, -6);
+    Display::drawCenteredString(11, heading, CURRENT_THEME->primary[2], Display::alpha, &Font6x8, 4, -3);
+    Display::drawCenteredString(8, heading, CURRENT_THEME->primary[5], Display::alpha, &Font6x8, 4, -6);
 
 
     // Content
@@ -24,8 +24,8 @@ void Menu::render() {
     for (int i = 0; i < MIN(4,items.size()); i++) {
         int y = 50 + i * 47;
 
-        uint16_t text_color =  CURRENT_THEME.secondary[2];
-        uint16_t bg_color =    CURRENT_THEME.secondary[7];
+        uint16_t text_color =  CURRENT_THEME->secondary[2];
+        uint16_t bg_color =    CURRENT_THEME->secondary[7];
         //Display::drawPlaceholder(0, y, 240, y+45);
         if (pointer - scroll == i) {
             uint16_t temp = text_color;

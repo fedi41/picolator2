@@ -13,6 +13,8 @@ extern "C" {
 #include "core/Input.h"
 #include "core/Navigation.h"
 
+#include "gfx/DrawUtils.h"
+
 
 void TestApp::init() {
     // Initialize the main screen app
@@ -20,23 +22,6 @@ void TestApp::init() {
 }
 
 
-void drawTailwindShade(int x, int y, int xx, int yy, TailwindPalette palette) {
-    int wi = (xx-x) / 12;
-    for (int i = 0; i < 12; i++) {
-        if (i == palette.baseColorId) {
-            Display::drawRect(
-                x+wi*i, y, x+wi*i+wi, yy, palette[i]^0xFFFF
-            );
-            Display::drawRect(
-                x+wi*i+2, y+2, x+wi*i+wi-2, yy-2, palette[i] 
-            );
-        } else {
-            Display::drawRect(
-                x+wi*i, y, x+wi*i+wi, yy, palette[i] 
-            );
-        }
-    }
-}
 
 void TestApp::render() {
     // Render the main screen app
@@ -54,14 +39,14 @@ void TestApp::render() {
     int w = 240 / 11;
     int h = 240 / 3;
 
-    drawTailwindShade(
-        0, 0, 240, h, CURRENT_THEME.surface
+    DrawUtils::drawTailwindShade(
+        0, 0, 240, h, CURRENT_THEME->surface
     );
-    drawTailwindShade(
-        0, h, 240, h+h, CURRENT_THEME.primary
+    DrawUtils::drawTailwindShade(
+        0, h, 240, h+h, CURRENT_THEME->primary
     );
-    drawTailwindShade(
-        0, h+h, 240, 240, CURRENT_THEME.secondary
+    DrawUtils::drawTailwindShade(
+        0, h+h, 240, 240, CURRENT_THEME->secondary
     );
 
 

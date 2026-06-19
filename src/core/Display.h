@@ -70,8 +70,8 @@ public:
     );
 
     static inline bool dirty = false;
-    static const int width = LCD_1IN3_WIDTH;
-    static const int height = LCD_1IN3_HEIGHT;
+    static const int width = 240;
+    static const int height = 240;
     static inline uint16_t alpha = 0;
 
     static inline bool overlayMode = false;
@@ -79,8 +79,8 @@ public:
     static inline BlendMode overlayBlendMode = NORMAL;
     static inline BlendMode drawBlendMode = NORMAL;
 private:
-    static inline UWORD* frameBuffer = nullptr;
-    static inline UWORD* frameBufferOverlay = nullptr;
+    static inline uint16_t* frameBuffer = nullptr;
+    static inline uint16_t* frameBufferOverlay = nullptr;
     static const uint32_t bufferSize = width * height;
 };
 

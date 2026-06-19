@@ -12,5 +12,9 @@ struct Theme
 };
 
 
-extern Theme classicTheme;
-extern Theme CURRENT_THEME;
+namespace THEMES {
+    extern Theme classicTheme;
+    extern Theme testTheme;
+    extern Theme hackerTheme;
+};
+extern Theme* CURRENT_THEME;

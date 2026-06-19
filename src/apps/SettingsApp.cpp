@@ -2,7 +2,10 @@
 #include "SettingsApp.h"
 #include "core/Input.h"
 #include "core/Navigation.h"
+#include "gfx/Theme.h"
+#include "gfx/DrawUtils.h"
 
+Theme* themes[3] = {&THEMES::classicTheme, &THEMES::testTheme, &THEMES::hackerTheme};
 
 void SettingsApp::init() {
     mainSettingsMenuScreen.items = {"Display", "Theme", "Debug"};
@@ -16,13 +19,13 @@ void SettingsApp::render() {
         mainSettingsMenuScreen.render();
         break;
     case SETTINGS_DISPLAY:
-        Display::drawPlaceholder(0,0,240,240);
+        DrawUtils::drawNoise(0,0,240,240);
         break;  
     case SETTINGS_THEME:
-        Display::drawPlaceholder(0,0,240,240);
+        themePreviewScreen.render();
         break;
     case SETTINGS_DEBUG:
-        Display::drawPlaceholder(0,0,240,240);
+        DrawUtils::drawNoise(0,0,240,240);
         break;
     default:
         break;
@@ -59,6 +62,14 @@ void SettingsApp::update() {
         case SETTINGS_DISPLAY:
             break;
         case SETTINGS_THEME:
+            if (Input::isKeyPressed(KEY_CTRL)) {
+                themePreviewIndex ++;
+                if (themePreviewIndex >= 3) {
+                    themePreviewIndex = 0;
+                }
+                CURRENT_THEME = themes[themePreviewIndex];
+                setDirty();
+            }
             break;
         case SETTINGS_DEBUG:
             break;
