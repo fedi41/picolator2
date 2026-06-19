@@ -15,12 +15,12 @@ void Display::init(uint16_t a) {
     DEV_SET_PWM(50);
 
     LCD_1IN3_Init(HORIZONTAL);
-    LCD_1IN3_Clear(WHITE);
+    LCD_1IN3_Clear(Colors::white);
 
     frameBuffer = new UWORD[bufferSize];
     frameBufferOverlay = new UWORD[bufferSize];
 
-    clear(WHITE);
+    clear(Colors::white);
 
     alpha = a;
     // alphaSwapped = (a >> 8) | (a << 8);
@@ -261,9 +261,9 @@ void Display::drawPlaceholder(int x, int y, int xx, int yy) {
     int w2 = (xx-x)/2;
     int h2 = (yy-y)/2;
 
-    drawRect(x,y,x+w2,y+h2,MAGENTA);
-    drawRect(x+w2,y,xx,y+h2,BLACK);
-    drawRect(x,y+h2,x+w2,yy,BLACK);
-    drawRect(x+w2,y+h2,xx,yy,MAGENTA);
+    drawRect(x,y,x+w2,y+h2,Colors::magenta);
+    drawRect(x+w2,y,xx,y+h2,Colors::black);
+    drawRect(x,y+h2,x+w2,yy,Colors::black);
+    drawRect(x+w2,y+h2,xx,yy,Colors::magenta);
 
 }

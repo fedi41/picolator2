@@ -34,6 +34,9 @@ class Input {
 	                short ctrl = 3
                 );
         static bool isKeyPressed(int button);
+        static void update();
+
+        static inline bool showDebug = false;
 
     private:
         static inline short keyA = 15;
@@ -46,4 +49,16 @@ class Input {
 	    static inline short left = 16;
 	    static inline short right = 20;
 	    static inline short ctrl = 3;
+
+        static inline bool keyAPressed = false;
+        static inline bool keyBPressed = false;
+        static inline bool keyXPressed = false;
+        static inline bool keyYPressed = false;
+        static inline bool keyCtrlPressed = false;
+        static inline bool keyUpPressed = false;
+        static inline bool keyLeftPressed = false;
+        static inline bool keyRightPressed = false;
+        static inline bool keyDownPressed = false;
+
+        static void drawDebug();
 };

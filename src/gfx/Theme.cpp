@@ -22,4 +22,4 @@ Theme hackerTheme {
     TailwindPalette::fromHSL({133, 1, 0.50}),
 };
 
-Theme CURRENT_THEME = classicTheme;
+Theme CURRENT_THEME = testTheme;

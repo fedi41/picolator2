@@ -1,27 +1,19 @@
 #pragma once
 
-#define WHITE          0xFFFF
-#define BLACK          0x0000
-// #define BLUE           0x001F
-// #define BRED           0XF81F
-// #define GRED           0XFFE0
-// #define GBLUE          0X07FF
-// #define RED            0xF800
-#define MAGENTA        0x1FF8
-// #define GREEN          0x07E0
-// #define CYAN           0x7FFF
-// #define YELLOW         0xFFE0
-// #define BROWN          0XBC40
-// #define BRRED          0XFC07
-// #define GRAY           0X8430
+#include <cstdint>
 
+namespace Colors {
+    constexpr uint16_t magenta = 0x1FF8;
+    constexpr uint16_t white = 0xFFFF;
+    constexpr uint16_t black = 0x0000;
+};
 
 #define TW_COUNT 11
 // 
 // using uint8_t = unsigned char;
 // using uint16_t = unsigned short;
 // 
-#include <cstdint>
+
 
 struct ColorHSL {
     float h; // 0-360
@@ -42,7 +34,7 @@ class TailwindPalette {
             return shades[baseColorId]; // 500
         }
 
-        constexpr uint16_t operator[](int i) const {
+        uint16_t operator[](int i) {
             if (mirrorPallete) {
                 return shades[11-i];
             }

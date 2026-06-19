@@ -10,6 +10,10 @@ extern "C" {
 #include "gfx/Colors.h"
 #include "gfx/Theme.h"
 
+#include "core/Input.h"
+#include "core/Navigation.h"
+
+
 void TestApp::init() {
     // Initialize the main screen app
 
@@ -45,7 +49,7 @@ void TestApp::render() {
     // Display::drawString(3, 110, "abcdefghijklmnopqrstuvwxyz", YELLOW, Display::alpha, false, &Font4x6, 2);
     // //UiDraw::centeredString(10, "Hello, World!", WHITE, BLACK, false, true);
     // //display.drawNumber(10, 40, counter, &Font20, WHITE, BLACK);
-    Display::clear(BLACK);
+    Display::clear(Colors::black);
 
     int w = 240 / 11;
     int h = 240 / 3;
@@ -64,7 +68,9 @@ void TestApp::render() {
 }
 
 void TestApp::update() {
-    // Update the main screen app
-    this -> setDirty(true); // Mark the app as dirty to trigger a re-render
-    counter++;
+    if (Input::isKeyPressed(KEY_B))  {Navigation::pop(); }
+
+    
+    //this -> setDirty(true); // Mark the app as dirty to trigger a re-render
+    //counter++;
 }

@@ -7,6 +7,7 @@
 #include "core/Logger.h"
 
 void Menu::render() {
+    // Logger::d("Menu render");
 
     // BG
     Display::clear(CURRENT_THEME.surface[2]);
@@ -46,10 +47,9 @@ void Menu::render() {
 
 }
 
-void Menu::init() {
-    Logger::d("Initilalizing Menu template (Init is not overriden)");
-}
 void Menu::update() {
+    //Logger::d("Menu update");
+
     if (Input::isKeyPressed(KEY_DOWN)) {
         pointer += 1;
         setDirty();
@@ -58,7 +58,6 @@ void Menu::update() {
         pointer -= 1;
         setDirty();
     }
-
 
     if (pointer >= std::size(items)) { pointer = 0; scroll = 0; }
     if (pointer < 0) { pointer = 0; }

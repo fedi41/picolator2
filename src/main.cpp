@@ -8,13 +8,12 @@ extern "C" {
 
 #include "core/Display.h"
 #include "core/Input.h"
-#include "apps/TestApp.h"
+
 #include "apps/App.h"
-#include "apps/MainApp.h"
-#include "core/AppManager.h"
+
+#include "core/Navigation.h"
 #include "core/Logger.h"
 #include "gfx/Colors.h"
-#include "assets/logoImg.h"
 #include "assets/logoImg.h"
 #include "assets/testImg.h"
 
@@ -23,24 +22,40 @@ int main(void)
     // LCD_1in3_test();
     
     // CONFIG
-    Logger::displayAfterPush = false;
-    TailwindPalette::mirrorPallete = false;
+
 
 
     Display::init();
     Display::clear(BLACK);
-    //DISPLAY CONFIG
+
+    // CONFIG
+
+    Logger::displayAfterPush = true;
+    TailwindPalette::mirrorPallete = false;
     Display::renderOverlay = true;
     Display::drawBlendMode = NORMAL;
     Display::overlayBlendMode = DIFFERENCE;
+    Input::showDebug = false;
 
     //Display::drawPlaceholder(0,0,240,240);
 
-    Display::overlayMode = true;
     Display::clear(0);
-    Display::drawImage(logoImage, 0,0,240,240);
+    Display::drawPlaceholder(0,0,240,240);
+    // Display::drawImage(logoImage, 0,0,240,240);
     // Display::drawImage(testImage, 0,0,120,60);
-    Display::overlayMode = false;
+    Display::render();
+
+// 
+    // Display::overlayMode = true;
+        // 
+        // Display::clear(0);
+        // Display::drawImage(logoImage, 0,0,240,240);
+// 
+    // Display::overlayMode = false;
+
+
+
+    DEV_Delay_ms(200);
 
     Logger::d("Display initialized");
 
@@ -58,23 +73,23 @@ int main(void)
     // Display::render();
 
 
-    TestApp testApp;
-    MainApp mainApp;
 
-    AppManager::push(&mainApp);
+    Navigation::open(AppId::MAIN_MENU);
 
-    Logger::d("AppManager Initialized");
+    Logger::d("--- Starting the main loop");
 
     while (true) {
-        if (Input::isKeyPressed(KEY_Y)) {AppManager::push(&testApp);}
-        else {AppManager::push(&mainApp);}
+        // if (Input::isKeyPressed(KEY_Y)) {Navigation::open(AppId::TEST);}
+        // else {Navigation::open(AppId::MAIN_MENU);}
         // if (Input::isKeyPressed(KEY_X)) {Display::renderOverlay = true;}
         // else {Display::renderOverlay = false;}
+        //if (Input::isKeyPressed(KEY_B))  {Navigation::pop(); }
 
+        Navigation::current()->update();
 
-        AppManager::current()->update();
+        Navigation::current()->renderIfDirty(); // Only render if there are changes to the app
+        Input::update();
 
-        AppManager::current()->renderIfDirty(); // Only render if there are changes to the app
         Display::render(); // Only render if there are changes to the display
     }
 
