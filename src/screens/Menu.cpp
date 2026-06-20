@@ -44,17 +44,17 @@ void Menu::render() {
     // Display::drawString(3, 70, "Hello World!", YELLOW, Display::alpha, false, &Font6x8, 2);
     // Display::drawString(3, 90, "WOoooww", YELLOW, Display::alpha, false, &Font6x8, 2);
     // Display::drawString(3, 110, "abcdefghijklmnopqrstuvwxyz", YELLOW, Display::alpha, false, &Font4x6, 2);
-
+    setDirty(false);
 }
 
 void Menu::update() {
     //Logger::d("Menu update");
 
-    if (Input::isKeyPressed(KEY_DOWN)) {
+    if (Input::justPressed(KEY_DOWN)) {
         pointer += 1;
         setDirty();
     }
-    if (Input::isKeyPressed(KEY_UP)) {
+    if (Input::justPressed(KEY_UP)) {
         pointer -= 1;
         setDirty();
     }

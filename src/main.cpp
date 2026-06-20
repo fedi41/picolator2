@@ -6,6 +6,10 @@ extern "C" {
     #include "ImageData.h"
 }
 
+#include "pico/stdlib.h"
+
+#include "pico/cyw43_arch.h"
+
 #include "core/Display.h"
 #include "core/Input.h"
 
@@ -22,20 +26,19 @@ int main(void)
     // LCD_1in3_test();
     
     // CONFIG
-
+    cyw43_arch_init();
 
 
     Display::init();
-    Display::clear(BLACK);
+    Display::clear(Colors::black);
 
     // CONFIG
 
-    Logger::displayAfterPush = true;
+    Logger::displayAfterPush = false;    
     TailwindPalette::mirrorPallete = false;
     Display::renderOverlay = true;
     Display::drawBlendMode = NORMAL;
     Display::overlayBlendMode = DIFFERENCE;
-    Input::showDebug = false;
 
     //Display::drawPlaceholder(0,0,240,240);
 
@@ -46,20 +49,21 @@ int main(void)
     Display::render();
 
 // 
-    // Display::overlayMode = true;
-        // 
-        // Display::clear(0);
-        // Display::drawImage(logoImage, 0,0,240,240);
-// 
-    // Display::overlayMode = false;
+//     Display::overlayMode = true;
+//         // 
+//         Display::clear(0);
+//         Display::drawImage(logoImage, 0,0,240,240);
+// //
+//     Display::overlayMode = false;
 
 
+    // cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
 
-    DEV_Delay_ms(200);
+    DEV_Delay_ms(2000);
 
     Logger::d("Display initialized");
 
-    Input::init();
+    Input::init(15, 17, 19, 2, 2, 18, 16, 20, 3);
 
     Logger::d("Input initialized");
     
@@ -84,13 +88,16 @@ int main(void)
         // if (Input::isKeyPressed(KEY_X)) {Display::renderOverlay = true;}
         // else {Display::renderOverlay = false;}
         //if (Input::isKeyPressed(KEY_B))  {Navigation::pop(); }
-
+        Input::update();
         Navigation::current()->update();
 
         Navigation::current()->renderIfDirty(); // Only render if there are changes to the app
-        Input::update();
 
-        Display::render(); // Only render if there are changes to the display
+        if (Display::dirty) {
+            cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
+            Display::render();
+            cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
+        }
     }
 
     return 0;

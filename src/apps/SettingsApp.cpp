@@ -38,7 +38,7 @@ void SettingsApp::update() {
         case SETTINGS_MAIN:
             mainSettingsMenuScreen.update();
 
-            if (Input::isKeyPressed(KEY_A)) {
+            if (Input::justPressed(KEY_A)) {
                 switch (mainSettingsMenuScreen.pointer)
                 {
                 case 0:
@@ -62,7 +62,7 @@ void SettingsApp::update() {
         case SETTINGS_DISPLAY:
             break;
         case SETTINGS_THEME:
-            if (Input::isKeyPressed(KEY_CTRL)) {
+            if (Input::justPressed(KEY_CTRL)) {
                 themePreviewIndex ++;
                 if (themePreviewIndex >= 3) {
                     themePreviewIndex = 0;
@@ -77,7 +77,7 @@ void SettingsApp::update() {
             break;
     }
 
-    if (Input::isKeyPressed(KEY_B)) {
+    if (Input::justPressed(KEY_B)) {
         if (currentPage == SETTINGS_MAIN) {
             Navigation::pop();
         } else {

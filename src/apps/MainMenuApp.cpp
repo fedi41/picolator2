@@ -16,7 +16,7 @@ void MainMenuApp::init() {
 void MainMenuApp::update() {
     menuScreen.update();
 
-    if (Input::isKeyPressed(KEY_A)) {
+    if (Input::justPressed(KEY_A)) {
         Navigation::open(apps[menuScreen.pointer]);
     }
 

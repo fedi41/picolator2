@@ -8,6 +8,7 @@ extern "C" {
 #include "Display.h"
 #include "gfx/Colors.h"
 #include "fonts/fonts.h"
+#include "core/Logger.h"
 
 void Display::init(uint16_t a) {
     DEV_Module_Init();
@@ -38,10 +39,12 @@ void Display::clear(uint16_t color) {
 
     dirty = true;
 }
-void Display::render() {
+bool Display::render() {
     if (!dirty) {
-        return;
+        return false;
     }
+
+    //Logger::d("render!");
 
     if (renderOverlay) {
         UWORD* displayBuffer = new UWORD[bufferSize];
@@ -69,6 +72,8 @@ void Display::render() {
         LCD_1IN3_Display(frameBuffer);
     }
     dirty = false;
+
+    return true;
 }
 
 int rotateIndex(int x, int y, int width, int height, int rotation)
