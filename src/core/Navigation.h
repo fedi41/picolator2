@@ -57,8 +57,9 @@ public:
         if (stack.size() <= 1)
             return; // Nicht die letzte App schließen
 
-        //stack.back()->onClose();
         stack.pop_back();
+        getApp(stack.back())->setDirty();
+
     }
 
     static AppId currentAppId() {

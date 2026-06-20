@@ -12,11 +12,13 @@ public:
 
     virtual void init() = 0;
 
-    void renderIfDirty() {
+    bool renderIfDirty() {
         if (dirty) {
             render();
+            dirty = false;
+            return true;
         }
-        dirty = false;
+        return false;
     }
     void setDirty(bool isDirty = true) {
         dirty = isDirty;

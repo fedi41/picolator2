@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-INPUT_FILE = "image.png"
+INPUT_FILE = "lag240.jpg"
 OUTPUT_FILE = "image.h"
 
 img = Image.open(INPUT_FILE).convert("RGB")
