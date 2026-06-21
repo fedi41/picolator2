@@ -2,6 +2,7 @@
 #include "FeatureManager.h"
 
 #include "LogoOverlayFeature.h"
+#include "DisplaySpinFeature.h"
 #include "core/Logger.h"
 
 
@@ -33,6 +34,9 @@ void FeatureManager::addFeature(Feature* feature) {
 }
 void FeatureManager::init() {
     LogoOverlayFeature* logoOverlayFeature = new LogoOverlayFeature();
+    DisplaySpinFeature* displaySpinFeature = new DisplaySpinFeature();
         Logger::d("Adding features...");
     addFeature(logoOverlayFeature);      
+    addFeature(displaySpinFeature);      
+
 }

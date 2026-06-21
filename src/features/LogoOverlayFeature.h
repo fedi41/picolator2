@@ -20,5 +20,4 @@ public:
 
         Display::overlayMode = false;
     }
-
 };

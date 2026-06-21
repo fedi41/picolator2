@@ -1,8 +1,6 @@
 #pragma once
 
-
-
-#include "App.h"
+#include "core/App.h"
 #include "core/Display.h"
 
 class TestApp : public App {

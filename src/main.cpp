@@ -13,7 +13,7 @@ extern "C" {
 #include "core/Display.h"
 #include "core/Input.h"
 
-#include "apps/App.h"
+#include "core/App.h"
 
 #include "core/Navigation.h"
 #include "core/Logger.h"
@@ -49,6 +49,7 @@ int main(void)
     Logger::d("FeatureManager initialized");
 
     FeatureManager::setEnabled("LogoOverlayFeature", false);
+    FeatureManager::setEnabled("DisplaySpinFeature", false);
 
     Navigation::open(AppId::MAIN_MENU);
     Logger::d("started main menu app");
@@ -77,13 +78,14 @@ int main(void)
 
         // APP UPDATE
         Navigation::current()->update();
+        // FEATURE UPDATE
+        FeatureManager::update();
 
         // APP DRAW
         Navigation::current()->renderIfDirty(); // Only render if there are changes to the app
-
         // FEATURE DRAW
         FeatureManager::render(Display::dirty);
-
+        //Display::dirty = true;
         if (Display::dirty) {
             cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
             Display::render();

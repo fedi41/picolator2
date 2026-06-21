@@ -1,6 +1,6 @@
 #pragma once
 
-#include "App.h"
+#include "core/App.h"
 #include "screens/Menu.h"
 #include "screens/ThemePreview.h"
 

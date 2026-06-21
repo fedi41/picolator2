@@ -147,7 +147,7 @@ UBYTE DEV_Module_Init(void)
 {
     stdio_init_all();   
     // SPI Config
-    spi_init(SPI_PORT, 10000 * 1000);
+    spi_init(SPI_PORT, 65 * 10000 * 1000);
     gpio_set_function(LCD_CLK_PIN, GPIO_FUNC_SPI);
     gpio_set_function(LCD_MOSI_PIN, GPIO_FUNC_SPI);
     
@@ -165,7 +165,7 @@ UBYTE DEV_Module_Init(void)
     
     
     //I2C Config
-    i2c_init(i2c1,300*1000);
+    i2c_init(i2c1,3*100*1000);
     gpio_set_function(LCD_SDA_PIN,GPIO_FUNC_I2C);
     gpio_set_function(LCD_SCL_PIN,GPIO_FUNC_I2C);
     gpio_pull_up(LCD_SDA_PIN);

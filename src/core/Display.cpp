@@ -111,7 +111,8 @@ void Display::setPixel(
     }
 
 
-    int id = rotateIndex(x,y,width,height,0);
+    int id = rotateIndex(x,y,width,height,drawRotation);
+
     uint16_t c = color;
     if (drawBlendMode == DIFFERENCE) {
         c = color ^ (overlayMode ? frameBufferOverlay[id] : frameBuffer[id]);

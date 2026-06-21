@@ -5,11 +5,11 @@
 #include <typeindex>
 #include <vector>
 
-#include "apps/App.h"
+#include "core/App.h"
 
-#include "apps/MainMenuApp.h"
-#include "apps/SettingsApp.h"
-#include "apps/TestApp.h"
+#include "apps/mainMenu/MainMenuApp.h"
+#include "apps/settingsApp/SettingsApp.h"
+#include "apps/testApp/TestApp.h"
 #include "core/AppId.h"
 
 

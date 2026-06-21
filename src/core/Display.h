@@ -74,6 +74,7 @@ public:
     static const int height = 240;
     static inline uint16_t alpha = 0;
 
+    static inline int drawRotation = 0;
     static inline bool overlayMode = false;
     static inline bool renderOverlay = false;
     static inline BlendMode overlayBlendMode = NORMAL;
