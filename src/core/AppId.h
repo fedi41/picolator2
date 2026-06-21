@@ -3,5 +3,6 @@
 enum AppId {
     MAIN_MENU,
     SETTINGS,
-    TEST
+    TEST,
+    DINO_RUNNER
 };

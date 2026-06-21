@@ -8,7 +8,7 @@ extern "C" {
 #include "fonts/fonts.h"
 
 enum BlendMode {
-    NORMAL, DIFFERENCE
+    NORMAL, DIFFERENCE, MIX
 };
 
 class Display {
@@ -77,7 +77,7 @@ public:
     static inline int drawRotation = 0;
     static inline bool overlayMode = false;
     static inline bool renderOverlay = false;
-    static inline BlendMode overlayBlendMode = NORMAL;
+    static inline BlendMode overlayBlendMode = MIX;
     static inline BlendMode drawBlendMode = NORMAL;
 private:
     static inline uint16_t* frameBuffer = nullptr;

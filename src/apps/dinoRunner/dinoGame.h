@@ -1,6 +1,10 @@
 #pragma once
 
-class DinoGame {
+#define DINO_JUMP_VEL 10
+
+class DinoGame 
+{
+public:
     float y = 0; 
     float yVel = 0; 
     float x = 0;
@@ -16,8 +20,13 @@ class DinoGame {
 
         yVel -= 1;
         y += yVel;
+        x += 1;
+        fixPosition();
 
-
+    }   
+    void jump() {
+        if (y <= 0) {
+            yVel = DINO_JUMP_VEL;
+        }
     }
-    
 };

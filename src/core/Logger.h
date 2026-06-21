@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <list>
+#include <vector>
 #include <string>
 
 #include "core/Display.h"
@@ -9,20 +9,22 @@
 
 class Logger {
 public:
-    static inline std::list<std::string> log = {};
+    static inline std::vector<std::string> log = {};
 
     static void render();
+    static void renderOnOverlay();
     static void clear() {
         log = {};
     }
     static void d(std::string message) {
         log.push_back(message);
-        if (displayAfterPush) {
-            render();
-            Display::render();
-        }
+        // if (displayAfterPush) {
+        //     render();
+        //     Display::render();
+        // }
+        dirty = true;
     }
-    static inline bool displayAfterPush = false;
+    // static inline bool displayAfterPush = false;
 
-
+    static inline bool dirty = false;
 };

@@ -3,7 +3,7 @@
 #include "core/App.h"
 #include "screens/Menu.h"
 #include "core/AppId.h"
-
+#include "dinoGame.h"
 
 
 class DinoRunnerApp : public App {
@@ -13,5 +13,6 @@ class DinoRunnerApp : public App {
     void render() override;
 
     private:
+        DinoGame game = DinoGame();
 
 };

@@ -10,6 +10,9 @@
 #include "apps/mainMenu/MainMenuApp.h"
 #include "apps/settingsApp/SettingsApp.h"
 #include "apps/testApp/TestApp.h"
+#include "apps/dinoRunner/DinoRunnerApp.h"
+
+
 #include "core/AppId.h"
 
 
@@ -22,19 +25,23 @@ private:
     static inline MainMenuApp mainMenuApp;
     static inline SettingsApp settingsApp;
     static inline TestApp testApp;
+    static inline DinoRunnerApp dinoRunnerApp;
 
     static App* getApp(AppId id) {
 
-    switch(id) {
-        case AppId::MAIN_MENU:
-            return &mainMenuApp;
+        switch(id) {
+            case AppId::MAIN_MENU:
+                return &mainMenuApp;
 
-        case AppId::SETTINGS:
-            return &settingsApp;
+            case AppId::SETTINGS:
+                return &settingsApp;
 
-        case AppId::TEST:
-            return &testApp;
-    }
+            case AppId::TEST:
+                return &testApp;
+
+            case AppId::DINO_RUNNER: 
+                return &dinoRunnerApp;
+        }
 
     return nullptr;
 }

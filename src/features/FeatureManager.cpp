@@ -3,6 +3,7 @@
 
 #include "LogoOverlayFeature.h"
 #include "DisplaySpinFeature.h"
+#include "LogDisplayFeature.h"
 #include "core/Logger.h"
 
 
@@ -22,6 +23,7 @@ void FeatureManager::render(bool forceRedraw) {
 
 void FeatureManager::setEnabled(const char* featureName, bool enabled) {
     featureNames[featureName]->enabled = enabled;
+    featureNames[featureName]->needsRedraw = true;
 }
 bool FeatureManager::isEnabled(const char* featureName) {
     return featureNames[featureName]->enabled;
@@ -33,10 +35,13 @@ void FeatureManager::addFeature(Feature* feature) {
         Logger::d("Succes");
 }
 void FeatureManager::init() {
+        Logger::d("Initialising features...");
     LogoOverlayFeature* logoOverlayFeature = new LogoOverlayFeature();
     DisplaySpinFeature* displaySpinFeature = new DisplaySpinFeature();
+    LogDisplayFeature* logDisplayFeature = new LogDisplayFeature();
         Logger::d("Adding features...");
     addFeature(logoOverlayFeature);      
     addFeature(displaySpinFeature);      
+    addFeature(logDisplayFeature);      
 
 }

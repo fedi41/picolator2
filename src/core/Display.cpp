@@ -10,6 +10,18 @@ extern "C" {
 #include "fonts/fonts.h"
 #include "core/Logger.h"
 
+static inline uint16_t swap565(uint16_t c) {
+    return (c >> 8) | (c << 8);
+}
+
+uint16_t blend565(uint16_t A, uint16_t B)
+{
+    A = swap565(A);
+    B = swap565(B);
+
+    return swap565(((A & 0xF7DE) + (B & 0xF7DE)) >> 1);
+}
+
 void Display::init(uint16_t a) {
     DEV_Module_Init();
 
@@ -24,6 +36,9 @@ void Display::init(uint16_t a) {
     clear(Colors::white);
 
     alpha = a;
+
+    uint16_t c = blend565(Colors::red, Colors::blue);
+    Logger::d(std::to_string(c));
     // alphaSwapped = (a >> 8) | (a << 8);
 }
 void Display::clear(uint16_t color) {
@@ -39,6 +54,7 @@ void Display::clear(uint16_t color) {
 
     dirty = true;
 }
+
 bool Display::render() {
     if (!dirty) {
         return false;
@@ -60,7 +76,9 @@ bool Display::render() {
                 case DIFFERENCE:
                     displayBuffer[i] = frameBufferOverlay[i]^frameBuffer[i];
                     break;
-                
+                case MIX:
+                    displayBuffer[i] = blend565(frameBuffer[i], frameBufferOverlay[i]);
+                    break;
                 default:
                     break;
                 }
@@ -114,8 +132,16 @@ void Display::setPixel(
     int id = rotateIndex(x,y,width,height,drawRotation);
 
     uint16_t c = color;
-    if (drawBlendMode == DIFFERENCE) {
+    switch (drawBlendMode)
+    {
+    case DIFFERENCE:
         c = color ^ (overlayMode ? frameBufferOverlay[id] : frameBuffer[id]);
+        break;
+    case MIX:
+        c = blend565((overlayMode ? frameBufferOverlay[id] : frameBuffer[id]), color);
+        break;
+    default:
+        break;
     }
 
     if (overlayMode) {

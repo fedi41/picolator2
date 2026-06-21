@@ -30,11 +30,11 @@ int main(void)
  
  
     // CONFIG
-    Logger::displayAfterPush = true;    
+    // Logger::displayAfterPush = true;    
     TailwindPalette::mirrorPallete = false;
     Display::renderOverlay = true;
     Display::drawBlendMode = NORMAL;
-    Display::overlayBlendMode = DIFFERENCE;
+    Display::overlayBlendMode = BLEND;
 
 
 
@@ -50,12 +50,13 @@ int main(void)
 
     FeatureManager::setEnabled("LogoOverlayFeature", false);
     FeatureManager::setEnabled("DisplaySpinFeature", false);
+    FeatureManager::setEnabled("LogDisplayFeature", true);
 
     Navigation::open(AppId::MAIN_MENU);
     Logger::d("started main menu app");
 
     Logger::d("-- READY --"); 
-    Logger::displayAfterPush = false;    
+
 
     // clear the overlay
     Display::overlayMode = true;
@@ -72,9 +73,11 @@ int main(void)
     // Logger::d("--- Starting the main loop");
 
     while (true) {
-    
         // INPUT
-        Input::update(); 
+        Input::update();
+        
+        // if (Input::pressed(KEY_A)) {FeatureManager::setEnabled("LogDisplayFeature", true);}
+        // else {FeatureManager::setEnabled("LogDisplayFeature", false);}
 
         // APP UPDATE
         Navigation::current()->update();
