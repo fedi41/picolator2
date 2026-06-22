@@ -58,8 +58,6 @@ void Display::init(uint16_t a) {
     LCD_1IN3_Clear(Colors::white);
 
     frameBuffer = new UWORD[bufferSize];
-    frameBufferOverlay = new UWORD[bufferSize];
-
     clear(Colors::white);
 
     alpha = a;
@@ -69,15 +67,12 @@ void Display::init(uint16_t a) {
     // alphaSwapped = (a >> 8) | (a << 8);
 }
 void Display::clear(uint16_t color) {
-    if (overlayMode) {
-        for (int i = 0; i < bufferSize; i++) {
-            frameBufferOverlay[i] = color;
-        }
-    } else {
-        for (int i = 0; i < bufferSize; i++) {
-            frameBuffer[i] = color;
-        }
+
+
+    for (int i = 0; i < bufferSize; i++) {
+        frameBuffer[i] = color;
     }
+    
 
     dirty = true;
 }
@@ -87,35 +82,8 @@ bool Display::render() {
         return false;
     }
 
-    //Logger::d("render!");
+    LCD_1IN3_Display(frameBuffer);
 
-    if (renderOverlay) {
-        UWORD* displayBuffer = new UWORD[bufferSize];
-        for (int i = 0; i < bufferSize; i++) {
-            if (frameBufferOverlay[i] == alpha) {
-                displayBuffer[i] = frameBuffer[i];
-            } else {
-                switch (overlayBlendMode)
-                {
-                case NORMAL:
-                    displayBuffer[i] = frameBufferOverlay[i];
-                    break;
-                case DIFFERENCE:
-                    displayBuffer[i] = frameBufferOverlay[i]^frameBuffer[i];
-                    break;
-                case MIX:
-                    displayBuffer[i] = blend565(frameBuffer[i], frameBufferOverlay[i]);
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-        LCD_1IN3_Display(displayBuffer);
-        delete[] displayBuffer;
-    } else {
-        LCD_1IN3_Display(frameBuffer);
-    }
     dirty = false;
 
     return true;
@@ -159,23 +127,20 @@ void Display::setPixel(
     int id = rotateIndex(x,y,width,height,drawRotation);
 
     uint16_t c = color;
-    switch (drawBlendMode)
+    switch (blendMode)
     {
     case DIFFERENCE:
-        c = color ^ (overlayMode ? frameBufferOverlay[id] : frameBuffer[id]);
+        c = color ^  frameBuffer[id];
         break;
     case MIX:
-        c = blend565((overlayMode ? frameBufferOverlay[id] : frameBuffer[id]), color);
+        c = blend565(frameBuffer[id], color);
         break;
     default:
         break;
     }
 
-    if (overlayMode) {
-        frameBufferOverlay[id] = c;
-    } else {
-        frameBuffer[id] = c;
-    }
+    frameBuffer[id] = c;
+    
     dirty = true;
 }
 

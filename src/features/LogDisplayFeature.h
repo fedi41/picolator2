@@ -18,6 +18,9 @@ public:
         }
     }
     void render() override {
-        Logger::renderOnOverlay();
+        
+        Logger::render();
+        
+        needsRedraw = false;
     }
 };

@@ -12,7 +12,6 @@ public:
     static inline std::vector<std::string> log = {};
 
     static void render();
-    static void renderOnOverlay();
     static void clear() {
         log = {};
     }

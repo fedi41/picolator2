@@ -72,19 +72,17 @@ public:
     );
 
     static inline bool dirty = false;
+    
     static const int width = 240;
     static const int height = 240;
-    static inline uint16_t alpha = 0;
 
+    static inline uint16_t alpha = 0;
     static inline int drawRotation = 0;
-    static inline bool overlayMode = false;
-    static inline bool renderOverlay = false;
-    static inline BlendMode overlayBlendMode = MIX;
-    static inline BlendMode drawBlendMode = NORMAL;
+    static inline BlendMode blendMode = NORMAL;
 private:
     static inline uint16_t* frameBuffer = nullptr;
-    static inline uint16_t* frameBufferOverlay = nullptr;
     static const uint32_t bufferSize = width * height;
+
     static inline bool displaySleeping = false;
     static inline uint32_t lastInteraction = 0; 
     static const uint32_t TIMEOUT_MS = 30000; // 30 seconds
