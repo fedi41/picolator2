@@ -9,6 +9,12 @@ extern "C" {
 #include "gfx/Colors.h"
 #include "fonts/fonts.h"
 #include "core/Logger.h"
+#include "pico/time.h"
+#include "core/Input.h"
+
+uint32_t millis() {
+    return to_ms_since_boot(get_absolute_time());
+}
 
 static inline uint16_t swap565(uint16_t c) {
     return (c >> 8) | (c << 8);
@@ -22,10 +28,31 @@ uint16_t blend565(uint16_t A, uint16_t B)
     return swap565(((A & 0xF7DE) + (B & 0xF7DE)) >> 1);
 }
 
+void Display::wakeUp() {
+    lastInteraction = millis();
+
+    if (displaySleeping) {
+        displaySleeping = false;
+        DEV_SET_PWM(90);
+    }
+}
+
+void Display::update() {
+    
+    if (Input::anyPressed()) {
+        wakeUp();
+    }
+
+    if (!displaySleeping &&
+        millis() - lastInteraction > TIMEOUT_MS) {
+
+        displaySleeping = true;
+        DEV_SET_PWM(0); 
+    }
+}
+
 void Display::init(uint16_t a) {
     DEV_Module_Init();
-
-    DEV_SET_PWM(50);
 
     LCD_1IN3_Init(HORIZONTAL);
     LCD_1IN3_Clear(Colors::white);
@@ -56,7 +83,7 @@ void Display::clear(uint16_t color) {
 }
 
 bool Display::render() {
-    if (!dirty) {
+    if (!dirty || displaySleeping) {
         return false;
     }
 

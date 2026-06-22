@@ -21,6 +21,8 @@ void Logger::render() {
         i++;
     }
 
+    dirty = false; 
+
 
     // while (i*6 < 234 && i < log.size()) {
     //     Display::drawString(0,i*6,log[i],0xffff,Display::alpha,false,&Font4x6);

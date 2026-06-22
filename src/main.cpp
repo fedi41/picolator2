@@ -34,7 +34,7 @@ int main(void)
     TailwindPalette::mirrorPallete = false;
     Display::renderOverlay = true;
     Display::drawBlendMode = NORMAL;
-    Display::overlayBlendMode = BLEND;
+    Display::overlayBlendMode = MIX;
 
 
 
@@ -70,14 +70,11 @@ int main(void)
     // wait 500ms
     DEV_Delay_ms(500);
 
-    // Logger::d("--- Starting the main loop");
+    Logger::d("--- Starting the main loop");
 
     while (true) {
         // INPUT
         Input::update();
-        
-        // if (Input::pressed(KEY_A)) {FeatureManager::setEnabled("LogDisplayFeature", true);}
-        // else {FeatureManager::setEnabled("LogDisplayFeature", false);}
 
         // APP UPDATE
         Navigation::current()->update();
@@ -89,6 +86,7 @@ int main(void)
         // FEATURE DRAW
         FeatureManager::render(Display::dirty);
         //Display::dirty = true;
+        Display::update();
         if (Display::dirty) {
             cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
             Display::render();

@@ -19,13 +19,13 @@ void SettingsApp::render() {
         mainSettingsMenuScreen.render();
         break;
     case SETTINGS_DISPLAY:
-        DrawUtils::drawNoise(0,0,240,240);
+        Display::drawPlaceholder(0,0,240,240);
         break;  
     case SETTINGS_THEME:
         themePreviewScreen.render();
         break;
     case SETTINGS_DEBUG:
-        DrawUtils::drawNoise(0,0,240,240);
+        Display::drawPlaceholder(0,0,240,240);
         break;
     default:
         break;

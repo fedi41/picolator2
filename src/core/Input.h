@@ -37,8 +37,11 @@ public:
     static bool pressed(Key key);
     static bool justPressed(Key key);
     static bool justReleased(Key key);
+    static bool anyPressed();
+    
 
 private:
     static inline Button buttons[KEY_COUNT];
     static inline short pins[KEY_COUNT];
+    static inline bool wasAnyPressed = false;
 };

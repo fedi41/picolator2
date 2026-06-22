@@ -32,8 +32,11 @@ void Input::init(
 }
 
 void Input::update() {
+    wasAnyPressed = false;
     for (int i = 0; i < KEY_COUNT; i++) {
-        buttons[i].update(gpio_get(pins[i]) == 0);
+        bool p = gpio_get(pins[i]) == 0;
+        wasAnyPressed |= p;
+        buttons[i].update(p);
     }
 }
 
@@ -48,3 +51,5 @@ bool Input::justPressed(Key key) {
 bool Input::justReleased(Key key) {
     return buttons[key].justReleased();
 }
+
+bool Input::anyPressed() {return wasAnyPressed; }

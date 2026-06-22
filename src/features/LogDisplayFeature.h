@@ -19,6 +19,5 @@ public:
     }
     void render() override {
         Logger::renderOnOverlay();
-        Logger::dirty = false;
     }
 };

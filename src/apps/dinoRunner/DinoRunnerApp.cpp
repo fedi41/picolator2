@@ -23,7 +23,6 @@ void DinoRunnerApp::init() {
 }
 
 void DinoRunnerApp::update() {
-    Logger::d("dino game UPDATE");
 
     game.update();
     if (Input::pressed(KEY_CTRL)) {
@@ -38,15 +37,16 @@ void DinoRunnerApp::update() {
 }
 
 void DinoRunnerApp::render() {
-    Logger::d("dino game RENDER");
 
-    int dinoRectY = 240 - game.y - 30;
+
+    int dinoRectY = 240 - game.y - 60 - 40; 
+    Logger::d(std::to_string(dinoRectY));
 
     // RENDER
 
     Display::clear(bgColor);
 
-    Display::drawPlaceholder(20, dinoRectY, 30,30);
+    Display::drawPlaceholder(20, dinoRectY, 80, dinoRectY+60);
 
 }
 

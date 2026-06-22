@@ -15,6 +15,8 @@ class Display {
 public:
     static void init(uint16_t alpha = 34564);
     static bool render();
+    static void update();
+    static void wakeUp(); 
 
     static void clear(uint16_t color);
 
@@ -83,5 +85,8 @@ private:
     static inline uint16_t* frameBuffer = nullptr;
     static inline uint16_t* frameBufferOverlay = nullptr;
     static const uint32_t bufferSize = width * height;
+    static inline bool displaySleeping = false;
+    static inline uint32_t lastInteraction = 0; 
+    static const uint32_t TIMEOUT_MS = 30000; // 30 seconds
 };
 
