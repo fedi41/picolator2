@@ -53,7 +53,7 @@ void TestApp::render() {
 }
 
 void TestApp::update() {
-    if (Input::justPressed(KEY_B))  {Navigation::pop(); }
+    if (Input::justPressed(KEY_LEFT))  {Navigation::pop(); }
 
     
     //this -> setDirty(true); // Mark the app as dirty to trigger a re-render

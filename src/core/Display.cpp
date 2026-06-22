@@ -271,11 +271,64 @@ void Display::drawRect(int Xstart, int Ystart, int Xend, int Yend, uint16_t Colo
 }
 
 
-void Display::drawImage(const uint16_t *image, int xStart, int yStart, int W_Image, int H_Image)
+void Display::drawImageData(const uint16_t *image, int xStart, int yStart, int W_Image, int H_Image)
 {
     for (int y = yStart; y < H_Image; y++) {
         for (int x = xStart; x < W_Image; x++) {
             setPixel(x, y, image[y * W_Image + x]);
+        }
+    }
+}
+
+void Display::drawImage(
+        const ImageRGB img, int x, int y
+) 
+{
+    drawImageData(
+        img.data, 
+        x,y,
+        img.width, img.height        
+    );
+}
+
+void Display::drawImage1Bit(
+    int x,
+    int y,
+    const uint8_t* texture,
+    int texWidth,
+    int texHeight,
+    uint16_t fgColor,
+    uint16_t bgColor,
+    int scale
+) {
+    if (x >= width || y >= height) {
+        return;
+    }
+
+    const int bytesPerRow = (texWidth + 7) / 8;
+
+    for (int row = 0; row < texHeight; row++) {
+        for (int col = 0; col < texWidth; col++) {
+
+            int byteIndex = row * bytesPerRow + (col / 8);
+            uint8_t bits = texture[byteIndex];
+
+            bool pixelSet = bits & (0x80 >> (col % 8));
+
+            int scaledCol = col * scale;
+            int scaledRow = row * scale;
+
+            uint16_t color = pixelSet ? fgColor : bgColor;
+
+            for (int oy = 0; oy < scale; oy++) {
+                for (int ox = 0; ox < scale; ox++) {
+                    setPixel(
+                        x + scaledCol + ox,
+                        y + scaledRow + oy,
+                        color
+                    );
+                }
+            }
         }
     }
 }

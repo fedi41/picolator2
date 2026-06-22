@@ -1,6 +1,6 @@
 #pragma once
 
-#define DINO_JUMP_VEL 10
+#define DINO_JUMP_VEL 12.5
 
 class DinoGame 
 {

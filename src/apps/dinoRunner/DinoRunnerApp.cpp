@@ -4,9 +4,13 @@
 #include "core/Logger.h"
 #include "core/Navigation.h"
 #include "gfx/Colors.h"
+#include "assets/Image.h"
 
 
-uint16_t bgColor = HSLtoInt({0,0,0.95});
+const uint16_t bgColor = HSLtoInt({0,0,0.95});
+const uint16_t fgColor = HSLtoInt({0,0,0.3});
+
+
 
 
 int toScreenUnit(float gameUnit) {
@@ -25,10 +29,10 @@ void DinoRunnerApp::init() {
 void DinoRunnerApp::update() {
 
     game.update();
-    if (Input::pressed(KEY_CTRL)) {
+    if (Input::pressed(KEY_A)) {
         game.jump();
     }
-    if (Input::pressed(KEY_B)) {
+    if (Input::pressed(KEY_LEFT)) {
         Navigation::pop();
         return;
     }
@@ -37,16 +41,27 @@ void DinoRunnerApp::update() {
 }
 
 void DinoRunnerApp::render() {
+    const int dinoSize = DinoRunnerAssets::dino.width*2;
+    const int floorHeight = 50;
 
 
-    int dinoRectY = 240 - game.y - 60 - 40; 
+    int dinoRectY = 240 - game.y - dinoSize - floorHeight; 
     //Logger::d(std::to_string(dinoRectY));
 
     // RENDER
 
     Display::clear(bgColor);
 
-    Display::drawPlaceholder(20, dinoRectY, 80, dinoRectY+60);
+    Display::drawRect(0, 240-floorHeight, 240,240, fgColor);
+
+    //Display::drawPlaceholder(20, dinoRectY, 50, dinoRectY+30);
+    Display::drawImage1Bit(
+        7, dinoRectY, 
+        DinoRunnerAssets::dino.data, 
+        DinoRunnerAssets::dino.width,
+        DinoRunnerAssets::dino.height,
+        fgColor, Display::alpha, 2
+    );
 
 }
 

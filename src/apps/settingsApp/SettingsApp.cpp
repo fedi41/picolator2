@@ -38,7 +38,7 @@ void SettingsApp::update() {
         case SETTINGS_MAIN:
             mainSettingsMenuScreen.update();
 
-            if (Input::justPressed(KEY_A)) {
+            if (Input::justPressed(KEY_RIGHT)) {
                 switch (mainSettingsMenuScreen.pointer)
                 {
                 case 0:
@@ -77,7 +77,7 @@ void SettingsApp::update() {
             break;
     }
 
-    if (Input::justPressed(KEY_B)) {
+    if (Input::justPressed(KEY_LEFT)) {
         if (currentPage == SETTINGS_MAIN) {
             Navigation::pop();
         } else {
