@@ -22,5 +22,5 @@ void DrawUtils::drawTailwindShade(int x, int y, int xx, int yy, TailwindPalette 
 // BRUH
 void DrawUtils::drawNoise(int x, int y, int xx, int yy) {
     uint16_t *ptr = 0;
-    Display::drawImage(ptr, x, y, xx, yy);
+    Display::drawImageData(ptr, x, y, xx, yy);
 }

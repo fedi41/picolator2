@@ -18,9 +18,9 @@ extern "C" {
 #include "core/Navigation.h"
 #include "core/Logger.h"
 #include "gfx/Colors.h"
-#include "assets/logoImg.h"
+#include "assets/Image.h"
 #include "assets/logoLagImg.h"
-#include "assets/testImg.h"
+
 
 #include "features/FeatureManager.h"
 
@@ -47,9 +47,9 @@ int main(void)
     FeatureManager::init();
     Logger::d("FeatureManager initialized");
 
-    FeatureManager::setEnabled("LogoOverlayFeature", true);
+    FeatureManager::setEnabled("LogoOverlayFeature", false);
     FeatureManager::setEnabled("DisplaySpinFeature", false);
-    FeatureManager::setEnabled("LogDisplayFeature", true);
+    FeatureManager::setEnabled("LogDisplayFeature", false);
 
     Navigation::open(AppId::MAIN_MENU);
     Logger::d("started main menu app");
@@ -58,7 +58,7 @@ int main(void)
 
     // logo splash
     Display::clear(0);
-    Display::drawImage(lag240, 0,0,240,240);
+    Display::drawImage(LogoImage::lag, 0, 0);
     Display::render();
     // wait 500ms
     DEV_Delay_ms(500);

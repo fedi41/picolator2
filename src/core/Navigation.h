@@ -2,7 +2,6 @@
 
 #include <map>
 #include <memory>
-#include <typeindex>
 #include <vector>
 
 #include "core/App.h"

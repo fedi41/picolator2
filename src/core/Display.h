@@ -6,6 +6,7 @@ extern "C" {
 
 #include <string>
 #include "fonts/fonts.h"
+#include "assets/Image.h"
 
 enum BlendMode {
     NORMAL, DIFFERENCE, MIX
@@ -41,12 +42,15 @@ public:
         FONT* font,
         int scale = 1
     );
-    static void drawImage(
+    static void drawImageData(
         const uint16_t *image, 
         int xStart, 
         int yStart, 
         int W_Image, 
         int H_Image
+    );
+    static void drawImage(
+        const ImageRGB img, int x, int y
     );
     static void drawCenteredString(
         int y,
@@ -69,6 +73,16 @@ public:
         int y,
         int xx,
         int yy
+    );
+    static void drawImage1Bit(
+        int x,
+        int y,
+        const uint8_t* texture,
+        int texWidth,
+        int texHeight,
+        uint16_t fgColor,
+        uint16_t bgColor,
+        int scale
     );
 
     static inline bool dirty = false;

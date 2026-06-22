@@ -8,7 +8,7 @@
 
 void MainMenuApp::init() {
     Logger::d("Initializing MainApp");
-    menuScreen.items = {"Settings", "Test", "Dino runner", "wooooow", "heheh", "bruh", "idk"};
+    menuScreen.items = {"Settings", "Test", "Pico-Dino", "wooooow", "heheh", "bruh", "idk"};
     apps = {AppId::SETTINGS, AppId::TEST, AppId::DINO_RUNNER, AppId::TEST, AppId::TEST, AppId::TEST, AppId::TEST};
     menuScreen.heading = "PICOLATOR";
     setDirty();
@@ -16,7 +16,7 @@ void MainMenuApp::init() {
 void MainMenuApp::update() {
     menuScreen.update();
 
-    if (Input::justPressed(KEY_A)) {
+    if (Input::justPressed(KEY_RIGHT)) {
         Navigation::open(apps[menuScreen.pointer]);
     }
 

@@ -3,7 +3,7 @@
 #include "Feature.h"
 
 #include "core/Display.h"
-#include "assets/logoImg.h"
+#include "assets/Image.h"
 
 
 class LogoOverlayFeature: public Feature 
@@ -14,7 +14,7 @@ public:
     }
     void render() override {
         Display::blendMode = DIFFERENCE;
-        Display::drawImage(logoImage, 0,0,240,240);
+        Display::drawImage(LogoImage::lag, 0,0);
         Display::blendMode = NORMAL;
 
         needsRedraw = false;

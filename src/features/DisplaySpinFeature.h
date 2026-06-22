@@ -3,7 +3,6 @@
 #include "Feature.h"
 
 #include "core/Display.h"
-#include "assets/logoImg.h"
 #include "core/Navigation.h"
 
 
