@@ -13,11 +13,10 @@ public:
         return "LogoOverlayFeature";
     }
     void render() override {
-        Display::overlayMode = true;
+        Display::blendMode = DIFFERENCE;
+        Display::drawImage(logoImage, 0,0,240,240);
+        Display::blendMode = NORMAL;
 
-            Display::clear(0);
-            Display::drawImage(logoImage, 0,0,240,240);
-
-        Display::overlayMode = false;
+        needsRedraw = false;
     }
 };

@@ -40,7 +40,7 @@ void DinoRunnerApp::render() {
 
 
     int dinoRectY = 240 - game.y - 60 - 40; 
-    Logger::d(std::to_string(dinoRectY));
+    //Logger::d(std::to_string(dinoRectY));
 
     // RENDER
 

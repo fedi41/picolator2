@@ -32,9 +32,8 @@ int main(void)
     // CONFIG
     // Logger::displayAfterPush = true;    
     TailwindPalette::mirrorPallete = false;
-    Display::renderOverlay = true;
-    Display::drawBlendMode = NORMAL;
-    Display::overlayBlendMode = MIX;
+
+    Display::blendMode = NORMAL;
 
 
 
@@ -48,7 +47,7 @@ int main(void)
     FeatureManager::init();
     Logger::d("FeatureManager initialized");
 
-    FeatureManager::setEnabled("LogoOverlayFeature", false);
+    FeatureManager::setEnabled("LogoOverlayFeature", true);
     FeatureManager::setEnabled("DisplaySpinFeature", false);
     FeatureManager::setEnabled("LogDisplayFeature", true);
 
@@ -56,12 +55,6 @@ int main(void)
     Logger::d("started main menu app");
 
     Logger::d("-- READY --"); 
-
-
-    // clear the overlay
-    Display::overlayMode = true;
-    Display::clear(Display::alpha);
-    Display::overlayMode = false;
 
     // logo splash
     Display::clear(0);
