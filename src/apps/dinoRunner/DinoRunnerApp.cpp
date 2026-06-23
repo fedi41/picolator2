@@ -96,6 +96,9 @@ void DinoRunnerApp::render() {
     Display::drawCenteredString(
         30, std::to_string(game.score), fgColor, Display::alpha, &Font6x8, 2
     );
+    Display::drawCenteredString(
+        10, std::to_string(Storage::data.dinoRunnerHighScore), fgColor, Display::alpha, &Font6x8, 2
+    );
 
     if (game.gameOver) {
         Display::drawImage1Bit(

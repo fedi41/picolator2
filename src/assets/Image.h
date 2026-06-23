@@ -35,7 +35,10 @@ namespace DinoRunnerAssets {
     extern const Image1Bit restart;
 
     namespace Cactus {
-        extern const Image1Bit cactus1;
+        extern const Image1Bit cactus_small1;
+        extern const Image1Bit cactus_big1;
+        extern const Image1Bit cactus_multi;
+
     }
 }
 

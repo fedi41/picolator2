@@ -1,6 +1,7 @@
 #pragma once
 #include "assets/Image.h"
 #include "gfx/DrawUtils.h"
+#include "storage/Storage.h"
 
 #define DINO_JUMP_VEL 12.5
 #define DINO_SCREEN_X 7
@@ -27,7 +28,7 @@ public:
     int score = 0;
     const Image1Bit* dinoTexture = &DinoRunnerAssets::Dino::run1;
     Cactus currentCactus = {
-        240, &DinoRunnerAssets::Cactus::cactus1 
+        240, &DinoRunnerAssets::Cactus::cactus_small1 
     };
     float speed = 4;
     int dinoAnimCounter = 0;
@@ -40,7 +41,7 @@ public:
         levelScroll = 0;
         dinoTexture = &DinoRunnerAssets::Dino::run1;
         currentCactus = {
-            240, &DinoRunnerAssets::Cactus::cactus1 
+            240, &DinoRunnerAssets::Cactus::cactus_small1
         };
         speed = 4;
         dinoAnimCounter = 0;
@@ -67,11 +68,15 @@ public:
         levelScroll += speed;
         currentCactus.x -= speed;
         score += 1;
+        
         speed += 0.004;
 
 
         if (currentCactus.x < -currentCactus.texture->width) {
             currentCactus.x = 240 + speed * 10;
+
+            currentCactus.texture = &DinoRunnerAssets::Cactus::cactus_multi;
+
         }
 
         if (DrawUtils::overlap(
@@ -84,6 +89,11 @@ public:
             *currentCactus.texture
         )) {
             gameOver = true;
+            if (score > Storage::data.dinoRunnerHighScore) {
+                Storage::data.dinoRunnerHighScore = score;
+                Storage::save();
+
+            }
         }
 
 
