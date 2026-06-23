@@ -2,10 +2,16 @@
 #include "assets/Image.h"
 #include "gfx/DrawUtils.h"
 #include "storage/Storage.h"
+#include "core/Input.h"
+#include <cstdlib>
 
 #define DINO_JUMP_VEL 12.5
 #define DINO_SCREEN_X 7
 #define FLOOR_HEIGHT 50
+
+#define GRAVITY 1
+#define GRAVITY_SNEAK 2
+
 
 // #define FLOOR_TEXTURE &DinoRunnerAssets::floor;
 // #define DINO_IDLE_TEXTURE &DinoRunnerAssets::Dino::idle;
@@ -27,6 +33,7 @@ public:
     float levelScroll = 0;
     int score = 0;
     const Image1Bit* dinoTexture = &DinoRunnerAssets::Dino::run1;
+    bool sneaking = false;
     Cactus currentCactus = {
         240, &DinoRunnerAssets::Cactus::cactus_small1 
     };
@@ -62,8 +69,11 @@ public:
             return;
         }
 
-
-        yVel -= 1;
+        if (sneaking) {
+            yVel -= GRAVITY_SNEAK;
+        } else {
+            yVel -= GRAVITY;
+        }
         dinoY += yVel;
         levelScroll += speed;
         currentCactus.x -= speed;
@@ -73,10 +83,23 @@ public:
 
 
         if (currentCactus.x < -currentCactus.texture->width) {
-            currentCactus.x = 240 + speed * 10;
+            currentCactus.x = 240 + speed * 10 + rand() % 100 - 50;
 
-            currentCactus.texture = &DinoRunnerAssets::Cactus::cactus_multi;
+            int cactusType = rand() % 3;
 
+            switch (cactusType) {
+                case 0:
+                    currentCactus.texture = &DinoRunnerAssets::Cactus::cactus_small1;break;
+                case 1: 
+                    currentCactus.texture = &DinoRunnerAssets::Cactus::cactus_big1;break;
+                case 2:
+                    currentCactus.texture = &DinoRunnerAssets::Cactus::cactus_multi;break;
+                default: break;
+            }
+
+            if (Input::pressed(KEY_Y)) {
+                currentCactus.texture = &DinoRunnerAssets::Cactus::cactus_giga;
+            }
         }
 
         if (DrawUtils::overlap(
@@ -106,11 +129,20 @@ public:
         if (gameOver) {
             dinoTexture = &DinoRunnerAssets::Dino::scared;
         } else if (isOnGround()) {
-            dinoTexture = &DinoRunnerAssets::Dino::run1;
-            if (dinoAnimCounter > 10) {
-                dinoAnimCounter = 0;
-            } else if (dinoAnimCounter > 5) {
-                dinoTexture = &DinoRunnerAssets::Dino::run2;
+            if (sneaking) {
+                dinoTexture = &DinoRunnerAssets::Dino::sneak1;
+                if (dinoAnimCounter > 10) {
+                    dinoAnimCounter = 0;
+                } else if (dinoAnimCounter > 5) {
+                    dinoTexture = &DinoRunnerAssets::Dino::sneak2;
+                }
+            } else {
+                dinoTexture = &DinoRunnerAssets::Dino::run1;
+                if (dinoAnimCounter > 10) {
+                    dinoAnimCounter = 0;
+                } else if (dinoAnimCounter > 5) {
+                    dinoTexture = &DinoRunnerAssets::Dino::run2;
+                }
             }
         }
 

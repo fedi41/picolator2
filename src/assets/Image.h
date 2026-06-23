@@ -29,6 +29,9 @@ namespace DinoRunnerAssets {
         extern const Image1Bit run1;
         extern const Image1Bit run2;
         extern const Image1Bit scared;
+        extern const Image1Bit sneak1;
+        extern const Image1Bit sneak2;
+
     } // namespace Dino
     
     extern const Image1Bit floor;
@@ -38,6 +41,7 @@ namespace DinoRunnerAssets {
         extern const Image1Bit cactus_small1;
         extern const Image1Bit cactus_big1;
         extern const Image1Bit cactus_multi;
+        extern const Image1Bit cactus_giga;
 
     }
 }

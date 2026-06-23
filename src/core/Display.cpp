@@ -48,6 +48,7 @@ void Display::update() {
 
         displaySleeping = true;
         DEV_SET_PWM(0); 
+        clear(0);
     }
 }
 

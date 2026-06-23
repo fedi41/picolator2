@@ -38,7 +38,10 @@ void DinoRunnerApp::update() {
         game.update();
         if (Input::pressed(KEY_UP) || Input::pressed(KEY_CTRL) || Input::pressed(KEY_A)) {
             game.jump();
-        }
+        } 
+        if (Input::pressed(KEY_DOWN) || Input::pressed(KEY_B)) {
+            game.sneaking = true;
+        } else {game.sneaking = false;}
         setDirty();
     }
 
