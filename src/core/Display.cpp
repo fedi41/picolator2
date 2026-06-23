@@ -78,7 +78,7 @@ void Display::clear(uint16_t color) {
 }
 
 bool Display::render() {
-    if (!dirty || displaySleeping) {
+    if (!dirty || displaySleeping || frozen) {
         return false;
     }
 
@@ -155,9 +155,9 @@ void Display::drawChar(
     FONT* font,
     int scale
 ) {
-    if (x >= width || y >= height) {
-        return;
-    }
+    // if (x >= width || y >= height) {
+    //     return;
+    // }
 
     const char* glyph =
         font->table + asciiChar * font->Height;

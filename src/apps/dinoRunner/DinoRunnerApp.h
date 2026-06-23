@@ -14,5 +14,6 @@ class DinoRunnerApp : public App {
 
     private:
         DinoGame game = DinoGame();
+        int runAnimCounter = 0; 
 
 };

@@ -39,9 +39,10 @@ int main(void)
 
     Display::init();
     Display::clear(Colors::black);
+    Display::render();
     Logger::d("Display initialized");
 
-    Input::init(15, 17, 19, 2, 2, 18, 16, 20, 3);
+    Input::init(15, 17, 19, 21, 2, 18, 16, 20, 3);
     Logger::d("Input initialized");
 
     FeatureManager::init();
@@ -56,12 +57,13 @@ int main(void)
 
     Logger::d("-- READY --"); 
 
+
     // logo splash
-    Display::clear(0);
-    Display::drawImage(LogoImage::lag, 0, 0);
-    Display::render();
+    // Display::clear(0);
+    // Display::drawImage(LogoImage::lag, 0, 0);
+    // Display::render();
     // wait 500ms
-    DEV_Delay_ms(500);
+    // DEV_Delay_ms(500);
 
     Logger::d("--- Starting the main loop");
 

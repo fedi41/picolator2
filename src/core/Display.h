@@ -93,6 +93,8 @@ public:
     static inline uint16_t alpha = 0;
     static inline int drawRotation = 0;
     static inline BlendMode blendMode = NORMAL;
+
+    static inline bool frozen = false;
 private:
     static inline uint16_t* frameBuffer = nullptr;
     static const uint32_t bufferSize = width * height;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-
+#include <algorithm>
 
 struct ImageRGB {
     uint16_t width;
@@ -23,6 +23,19 @@ namespace LogoImage {
 
 namespace DinoRunnerAssets {
 
-    extern const Image1Bit dino;
+    namespace Dino
+    {
+        extern const Image1Bit idle;
+        extern const Image1Bit run1;
+        extern const Image1Bit run2;
+        extern const Image1Bit scared;
+    } // namespace Dino
+    
+    extern const Image1Bit floor;
+    extern const Image1Bit restart;
 
+    namespace Cactus {
+        extern const Image1Bit cactus1;
+    }
 }
+

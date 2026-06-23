@@ -28,7 +28,7 @@ def convert_sprite(input_file):
     sprite_name = Path(input_file).stem
     guard = f"{sprite_name.upper()}_H"
 
-    output_file = f"{sprite_name}.h"
+    output_file = f"imageBuilds/{sprite_name}.h"
 
     with open(output_file, "w") as f:
         f.write(f"#ifndef {guard}\n")
