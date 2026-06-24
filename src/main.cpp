@@ -82,6 +82,9 @@ int main(void)
         FeatureManager::render(Display::dirty);
         //Display::dirty = true;
         Display::update();
+
+        // if (Input::pressed(KEY_X)) {Display::frozen = true;}
+
         if (Display::dirty) {
             cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
             Display::render();
