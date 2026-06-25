@@ -4,12 +4,19 @@
 #include "core/Navigation.h"
 #include "gfx/Theme.h"
 #include "gfx/DrawUtils.h"
+#include "features/FeatureManager.h"
 
 Theme* themes[3] = {&THEMES::classicTheme, &THEMES::testTheme, &THEMES::hackerTheme};
 
 void SettingsApp::init() {
     mainSettingsMenuScreen.items = {"Display", "Theme", "Debug"};
     mainSettingsMenuScreen.heading = "Settings";
+
+    featureMenu.heading = "Features";
+    featureMenu.items = {};
+    for (Feature* feature : FeatureManager::features) {
+        featureMenu.items.push_back(feature->getName());
+    }
     setDirty();
 }
 void SettingsApp::render() {
@@ -24,8 +31,8 @@ void SettingsApp::render() {
     case SETTINGS_THEME:
         themePreviewScreen.render();
         break;
-    case SETTINGS_DEBUG:
-        Display::drawPlaceholder(0,0,240,240);
+    case SETTINGS_FEATURES:
+        featureMenu.render();
         break;
     default:
         break;
@@ -48,7 +55,7 @@ void SettingsApp::update() {
                     currentPage = SETTINGS_THEME;
                     break;
                 case 2:
-                    currentPage = SETTINGS_DEBUG;
+                    currentPage = SETTINGS_FEATURES;
                     break;
                 
                 default:
@@ -71,7 +78,13 @@ void SettingsApp::update() {
                 setDirty();
             }
             break;
-        case SETTINGS_DEBUG:
+        case SETTINGS_FEATURES:
+            featureMenu.update();
+
+            for (Feature* feature : FeatureManager::features) {
+                feature->enabled = featureMenu.states[FeatureManager::featureIds[feature->getName()]];
+            }
+            if (featureMenu.isDirty()) {setDirty();}
             break;
         default:
             break;

@@ -9,7 +9,7 @@ class FeatureManager
 {
 public:
     static inline std::vector<Feature*> features;
-    static inline std::map<const char*, Feature*> featureNames;
+    static inline std::map<const char*, size_t> featureIds;
 
     static void init();
 

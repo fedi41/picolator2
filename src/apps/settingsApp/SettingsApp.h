@@ -2,10 +2,11 @@
 
 #include "core/App.h"
 #include "screens/Menu.h"
+#include "screens/MenuOnOff.h"
 #include "screens/ThemePreview.h"
 
 enum SettingsPage {
-    SETTINGS_MAIN, SETTINGS_DISPLAY, SETTINGS_THEME, SETTINGS_DEBUG
+    SETTINGS_MAIN, SETTINGS_DISPLAY, SETTINGS_THEME, SETTINGS_FEATURES
 };
 
 
@@ -18,6 +19,7 @@ class SettingsApp : public App {
     private:
         ThemePreview themePreviewScreen = ThemePreview();
         Menu mainSettingsMenuScreen = Menu();
+        MenuOnOff featureMenu = MenuOnOff();
 
         int themePreviewIndex = 0;
         

@@ -22,16 +22,16 @@ void FeatureManager::render(bool forceRedraw) {
 }
 
 void FeatureManager::setEnabled(const char* featureName, bool enabled) {
-    featureNames[featureName]->enabled = enabled;
-    featureNames[featureName]->needsRedraw = true;
+    features[featureIds[featureName]]->enabled = enabled;
+    features[featureIds[featureName]]->needsRedraw = true;
 }
 bool FeatureManager::isEnabled(const char* featureName) {
-    return featureNames[featureName]->enabled;
+    return features[featureIds[featureName]]->enabled;
 }
 void FeatureManager::addFeature(Feature* feature) {
     features.push_back(feature);
         Logger::d(feature->getName());
-    featureNames[feature->getName()] = feature;
+    featureIds[feature->getName()] = std::size(features)-1;
         Logger::d("Succes");
 }
 void FeatureManager::init() {
