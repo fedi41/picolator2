@@ -1,5 +1,3 @@
-
-
 https://github.com/user-attachments/assets/24e997ce-0cfe-4a95-80da-4d27f19e4859
 
 # PICOLATOR V2
@@ -34,4 +32,5 @@ https://stardance.hackclub.com/projects/4738
 <img width="720" height="371" alt="photo_2026-06-18_14-41-17" src="https://github.com/user-attachments/assets/7da51e7e-7aec-4f68-bd15-21e7f8d53491" />
 <img width="550" height="512" alt="photo_2026-06-16_19-28-25" src="https://github.com/user-attachments/assets/332011bf-5f12-4f13-ae0d-d763a1568d05" />
 <img width="1280" height="720" alt="photo_2026-06-16_19-31-13" src="https://github.com/user-attachments/assets/ec44bb18-9c39-4905-9853-6759af014d52" />
+<img width="1116" height="562" alt="photo_2026-06-23_22-16-02" src="https://github.com/user-attachments/assets/ffe2864f-6f2e-4558-83f3-48db1402cf76" />
 
