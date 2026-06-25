@@ -9,13 +9,15 @@
 Theme* themes[3] = {&THEMES::classicTheme, &THEMES::testTheme, &THEMES::hackerTheme};
 
 void SettingsApp::init() {
-    mainSettingsMenuScreen.items = {"Display", "Theme", "Debug"};
+    mainSettingsMenuScreen.items = {"Display", "Theme", "Features"};
     mainSettingsMenuScreen.heading = "Settings";
 
     featureMenu.heading = "Features";
     featureMenu.items = {};
+    featureMenu.states = {};
     for (Feature* feature : FeatureManager::features) {
         featureMenu.items.push_back(feature->getName());
+        featureMenu.states.push_back(false);
     }
     setDirty();
 }

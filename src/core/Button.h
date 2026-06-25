@@ -1,31 +1,37 @@
 #pragma once
 
+#include "pico/time.h"
+
 class Button {
 public:
     bool current = false;
     bool previous = false;
 
 private:
-    int releaseCounter = 0;
+    uint32_t releaseStart = 0;
+    bool releasePending = false;
 
 public:
     void update(bool state) {
         previous = current;
 
-        // Press immediately
         if (state) {
+            // Press immediately
             current = true;
-            releaseCounter = 0;
+            releasePending = false;
         }
-        // Debounce release
         else {
-            if (current) {
-                releaseCounter++;
+            // Start release timer
+            if (current && !releasePending) {
+                releasePending = true;
+                releaseStart = time_us_32();
+            }
 
-                if (releaseCounter >= 2) { // adjust as needed
-                    current = false;
-                    releaseCounter = 0;
-                }
+            // Release only after 5 ms
+            if (releasePending &&
+                time_us_32() - releaseStart >= 5000) {
+                current = false;
+                releasePending = false;
             }
         }
     }

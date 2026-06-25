@@ -14,7 +14,7 @@ public:
     }
     void render() override {
         Display::blendMode = DIFFERENCE;
-        Display::drawImage(LogoImage::lag, 0,0);
+        Display::drawImage(LogoImage::normal, 0,0);
         Display::blendMode = NORMAL;
 
         needsRedraw = false;
