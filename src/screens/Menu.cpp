@@ -50,11 +50,11 @@ void Menu::render() {
 void Menu::update() {
     //Logger::d("Menu update");
 
-    if (Input::justPressed(KEY_DOWN)) {
+    if (Input::justPressed(KEY_DOWN) || Input::justPressed(KEY_Y)) {
         pointer += 1;
         setDirty();
     }
-    if (Input::justPressed(KEY_UP)) {
+    if (Input::justPressed(KEY_UP) || Input::justPressed(KEY_X)) {
         pointer -= 1;
         setDirty();
     }

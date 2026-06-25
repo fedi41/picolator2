@@ -29,7 +29,7 @@ void DinoRunnerApp::init() {
 
 void DinoRunnerApp::update() {
 
-    if (Input::pressed(KEY_LEFT)) {
+    if (game.gameOver && (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B))) {
         Navigation::pop();
         return;
     } 
