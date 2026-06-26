@@ -1,0 +1,30 @@
+
+
+html {
+    font-family: "Jersey 10";
+    font-size: 1.3vw;
+}
+
+
+@media (max-aspect-ratio: 4/3) {
+    html {
+        font-size: 2vh;
+    }
+}
+
+
+.highlight {
+    color: var(--accent);
+}
+
+.bold-heading {
+
+    color: var(--accent);
+    font-size: 6.5rem;
+
+    text-align: center;
+
+    margin: 0;
+    padding: 0;
+
+}

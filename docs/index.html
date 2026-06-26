@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picolator</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="landing-page.css">
-    <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing-section.css">
+    <link rel="stylesheet" href="css/font.css">
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
+        <!-- LANDING -->
         <section id="landing-page">
             <div id="landing-page-image">
                 <div class="photo-morph">
@@ -21,28 +22,117 @@
             </div>
             <div id="landing-page-divider1" class="divider"></div>
             <div id="landing-page-divider2"></div>
-            <div id="landing-page-heading">
-
-                <div>PICO</div>
-                <div>LATOR</div>
-
+            <div id="landing-page-heading" class="font10rem">
+                <div class="two-line-heading">
+                    <div>PICO</div>
+                    <div>LATOR</div>
+                </div>
             </div>
             <div id="landing-page-text">
-                <span class="highlight"> PICOLATOR </span> is a simple OS for the raspberry <span class="highlight">pi pico</span>.  
+                <!-- <span class="highlight"> PICOLATOR </span> 
+                is a simple, minimalistic 
+                <span class="highlight">OS</span>
+                 for the rawspberry <span class="highlight">pi pico</span>,
+                  written in <span class="highlight">C++</span>   -->
+                 <span class="highlight">PICOLATOR</span> is a handheld device powered by a Raspberry Pi Pico, featuring a custom operating system.
             </div>
-            <div id="landing-page-video">
-                <a href="#">
-                    <img src="img/play-button.svg" alt="">
-                    <div>video</div>
+            <div id="landing-page-link">
+                <a href="https://github.com/fedi41-prog/picolator2">
+                    <!-- <img src="img/github.png" alt=""> -->
+                    <div class="width6rem height6rem github-icon"></div>
                 </a>
             </div>
 
         </section>
+        <div class="divider width80 height05rem centered"></div>
+
+
+        <!-- HARDWARE -->
+
+        <section id="hardware-section">
+            <h1 class="bold-heading">Hardware</h1>
+        
+            <p class="centered max80">
+                <span class="highlight">Picolator</span> runs on a
+                <span class="highlight">Raspberry Pi Pico (2W)</span>, chosen for its small size and full low-level control.
+            </p>
+        
+            <p class="centered max80">
+                It drives a <span class="highlight">1.3" LCD display</span> (Waveshare module) that is directly wired to the board,
+                keeping the system simple and fast.
+            </p>
+        
+            <p class="centered max80">
+                All interaction is handled through physical GPIO buttons, making the device feel fully handheld and self-contained.
+            </p>
+        </section>
+        <div class="divider width80 height05rem centered"></div>
+
+
+        <!-- FIRMWARE -->
+
+        <section id="firmware-section">
+            <h1 class="bold-heading">Firmware</h1>
+        
+            <p class="centered max80">
+                The system is written in <span class="highlight">C++</span> using the Raspberry Pi Pico SDK,
+                giving full control over the hardware without any heavy abstraction layers.
+            </p>
+        
+            <p class="centered max80">
+                On top of that, Picolator runs a lightweight custom system that handles input, rendering, and UI logic directly.
+            </p>
+        
+            <p class="centered max80">
+                This approach keeps everything fast, predictable, and easy to extend as new features are added.
+            </p>
+        </section>
+        <div class="divider width80 height05rem centered"></div>
+
+        <!-- FEATURES -->
+
+        <section id="features-section">
+            <h1 class="bold-heading">Features</h1>
+
+            <p class="centered max80">
+                The UI system includes <span class="highlight">blend modes</span>, allowing visual effects and more flexible rendering
+                even on limited hardware.
+            </p>
+        
+            <p class="centered max80">
+                Alongside that, a built-in <span class="highlight">Settings app</span> lets you toggle features and switch themes,
+                keeping the system configurable without touching code.
+            </p>
+        
+            <p class="centered max80">
+                For interaction and testing, Picolator also includes a simple <span class="highlight">Dino Runner</span> game,
+                which demonstrates input handling and real-time updates.
+            </p>
+        
+            <p class="centered max80">
+                Overall, the system is designed to grow over time, with space for new apps and internal features.
+            </p>
+        </section>
+        <div class="divider width80 height05rem centered"></div>
+
+        <!-- DESIGN -->
+
+        <section id="design-section">
+            <h1 class="bold-heading">Design</h1>
+        
+            <p class="centered max80">
+                Picolator is built around a simple idea: exploring how much you can do with very little hardware.
+            </p>
+        
+            <p class="centered max80">
+                Instead of relying on frameworks, everything is built directly on top of the system for full control and understanding.
+            </p>
+        </section>
+
     </main>
     <footer>
 
         <p>website still in work!</p>
-        <p>Fedor Karev</p>
 
     </footer>
 </body>
