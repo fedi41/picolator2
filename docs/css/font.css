@@ -8,7 +8,7 @@ html {
 
 @media (max-aspect-ratio: 4/3) {
     html {
-        font-size: 2vh;
+        font-size: min(2vh, 3.2vw);
     }
 }
 
