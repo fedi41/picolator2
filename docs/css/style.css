@@ -112,8 +112,8 @@ footer {
 .github-icon {
     background-color: var(--darker);
 
-    -webkit-mask: url("img/github.png") center/contain no-repeat;
-    mask: url("img/github.png") center/contain no-repeat;
+    -webkit-mask: url("docs/img/github.png") center/contain no-repeat;
+    mask: url("docs/img/github.png") center/contain no-repeat;
 }
 
 .fill {width: 100px; height: 100px;}
