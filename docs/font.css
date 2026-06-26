@@ -1,0 +1,18 @@
+
+
+html {
+    font-family: "Jersey 10";
+    font-size: 1vw;
+}
+
+
+@media (orientation: portrait) {
+    html {
+        font-size: 2vh;
+    }
+}
+
+
+.highlight {
+    color: var(--color4);
+}
