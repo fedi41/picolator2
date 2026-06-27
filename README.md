@@ -1,36 +1,98 @@
-https://github.com/user-attachments/assets/24e997ce-0cfe-4a95-80da-4d27f19e4859
-
 # PICOLATOR V2
-A **custom OS** for the Raspberry pi pico 2w, written in **C++**
 
-<img width="669" height="336" alt="photo_2026-06-18_15-29-03" src="https://github.com/user-attachments/assets/01a0856d-54fe-4e2f-9b28-93de863d2f96" />
+PICOLATOR is a handheld device powered by a Raspberry Pi Pico, featuring a custom operating system written in C++.
+
+<img width="669" height="336" alt="PICOLATOR" src="https://github.com/user-attachments/assets/01a0856d-54fe-4e2f-9b28-93de863d2f96" />
 
 ## Features
-- Text rendering (different font and scale supported)
-- Image rendering (yes it can render real images)
-- Blend modes (difference, normal)
-- overlay support
-- App manager (with stack system)
-- Custom theme support (Tailwind themes)
-> more comming soon....
+
+- Modular feature system
+- Built-in Dino Runner game
+- Blend modes (Difference & Normal & Mix)
+- App manager with a stack-based navigation system
+- Multiple color themes
+- Lightweight and modular architecture
+
+> 🚧 More features coming soon...
+
+---
+
+## Apps
+
+### Pico-Dino
+
+A recreation of the iconic Chrome Dino game.
+
+Features:
+- High score saving
+- Smooth gameplay
+- Optimized for the Pico LCD
+
+<img width="1116" height="562" alt="Pico Dino" src="https://github.com/user-attachments/assets/9a10bde9-32ca-41da-a45f-145c50e9bae6" />
+
+### Settings
+
+Manage your device through a simple settings app.
+
+Features:
+- Theme selection
+- Feature toggles
+- Persistent settings
+
+---
 
 ## Hardware
-- It was tested on a Rpi pico 2w, but it will probably also work with other picos on this development stage.
-- As a Display I use the Waveshare Pico LCD 1.3Inch (240 pixel wide)
-- My Pico is connected to the display via an extension board, but you can also attach the display directly to the controller.
+
+The project is currently tested on the following hardware:
+
+- Raspberry Pi Pico 2 W
+- Waveshare Pico LCD 1.3" (240 × 240)
+- GPIO buttons for input
+
+The display can either be connected through an extension board or directly to the Pico.
+
+---
+
+## Software
+
+- Written in **C++**
+- Built using the Raspberry Pi Pico SDK
+- Custom UI framework
+- Custom rendering engine
+- Lightweight architecture
+
+---
+
+## Status
+
+🚧 **Active development**
+
+PICOLATOR is still under active development, and new features are added regularly.
+
+---
 
 ## Links
 
-This is the second version of my picolator project. Here is my first version in Python:
+This is the second generation of the PICOLATOR project.
+
+**Original Python version:**
+
 https://github.com/fedi41-prog/picolator
 
-I am making this project for the Stardance challenge (by HackClub) here is the link to all the devlogs: 
+**Project website:**
+
+https://fedi41-prog.github.io/picolator2
+
+**Stardance Devlogs:**
+
 https://stardance.hackclub.com/projects/4738
 
-## more Photos
+---
 
-<img width="720" height="371" alt="photo_2026-06-18_14-41-17" src="https://github.com/user-attachments/assets/7da51e7e-7aec-4f68-bd15-21e7f8d53491" />
-<img width="550" height="512" alt="photo_2026-06-16_19-28-25" src="https://github.com/user-attachments/assets/332011bf-5f12-4f13-ae0d-d763a1568d05" />
-<img width="1280" height="720" alt="photo_2026-06-16_19-31-13" src="https://github.com/user-attachments/assets/ec44bb18-9c39-4905-9853-6759af014d52" />
-<img width="1116" height="562" alt="photo_2026-06-23_22-16-02" src="https://github.com/user-attachments/assets/ffe2864f-6f2e-4558-83f3-48db1402cf76" />
+## More Photos
 
+<img width="720" height="371" alt="PICOLATOR Photo" src="https://github.com/user-attachments/assets/7da51e7e-7aec-4f68-bd15-21e7f8d53491" />
+
+<img width="550" height="512" alt="PICOLATOR Photo" src="https://github.com/user-attachments/assets/332011bf-5f12-4f13-ae0d-d763a1568d05" />
+
+<img width="1280" height="720" alt="PICOLATOR Photo" src="https://github.com/user-attachments/assets/ec44bb18-9c39-4905-9853-6759af014d52" />
