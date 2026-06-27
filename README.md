@@ -12,6 +12,7 @@ PICOLATOR is a handheld device powered by a Raspberry Pi Pico, featuring a custo
 - App manager with a stack-based navigation system
 - Multiple color themes
 - Lightweight and modular architecture
+- Log system
 
 > 🚧 More features coming soon...
 
