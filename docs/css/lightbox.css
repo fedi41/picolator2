@@ -1,0 +1,100 @@
+/* Code by ChatGPT */
+
+.gallery {
+    width: min(90%, 80rem);
+    margin: 3rem auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1rem;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    object-fit: cover;
+
+    border-radius: 0.8rem;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease,
+        box-shadow .2s ease;
+}
+
+.gallery img:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.9);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity .2s;
+}
+
+#lightbox.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#lightbox img {
+    max-width: 95dvw;
+    max-height: 95dvh;
+
+    min-width: 40dvw;
+    min-height: 40dvh;
+
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.lightbox {
+    display: flex;
+}
+
+.gallery img.large {
+    grid-column: span 2;
+}
+
+.gallery img.tall {
+    grid-row: span 2;
+    aspect-ratio: 1 / 2;
+}
+
+.gallery img.wide {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+}
+
+.gallery img {
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: fadeUp .5s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

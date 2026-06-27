@@ -214,9 +214,6 @@ p {
     text-decoration: none;
 
     margin: 0.5rem auto;
-
-
-
 }
 
 .feature-list {
@@ -242,4 +239,8 @@ p {
     text-align: center;
     margin-bottom: 2.5rem;
     margin-top: 2.5rem;
+}
+
+.fill-width {
+    width: 100dvw;
 }
