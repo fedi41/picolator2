@@ -1,0 +1,246 @@
+
+:root {
+    --light: #e0fbfc;
+    --medium: #98c1d9;
+    --dark: #3d5a80;
+    --darker: #293241;
+
+    --accent: #ee6c4d;
+}
+
+
+
+html {
+    color: var(--darker);
+}
+
+
+
+body {
+    background-color: var(--light);
+    padding: 0;
+    margin: 0;
+}
+
+footer {
+    background-color: var(--darker);
+    width: 100%;
+    height: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 0;
+    color: var(--medium);
+    align-items: center;
+    text-align: center;
+    
+}
+
+
+
+
+
+
+/* UTILS */
+
+
+/* PHOTO MORPH */
+/* ----- */
+
+.photo-morph {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+    overflow: hidden;
+
+}
+.photo-morph img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.photo-morph .left {
+    clip-path: polygon(
+        0 0,
+        80% 0,
+        60% 100%,
+        0 100%
+    );
+
+
+    transition: 0.6s ease;
+}
+.photo-morph .right {
+        clip-path: polygon(
+        80% 0,
+        100% 0,
+        100% 100%,
+        60% 100%
+    );
+    
+    transition: 0.6s ease;
+}
+
+.photo-morph:hover .left {
+    clip-path: polygon(
+        0 0,
+        40% 0,
+        20% 100%,
+        0 100%
+    );
+}
+.photo-morph:hover .right {
+        clip-path: polygon(
+        40% 0,
+        100% 0,
+        100% 100%,
+        20% 100%
+    );
+}
+/* ----- */
+/* PHOTO MORPH */
+
+.half-width {
+    width: 50vw;
+}
+.half-height {
+    height: 50vh;
+}
+
+.two-line-heading {
+    min-width: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 100%;
+    height: 100%;
+
+    font-size: 1em;
+
+    margin: auto; padding: auto;
+}
+.two-line-heading div {
+    margin: auto; padding: auto;
+    color: var(--accent);
+    line-height: 0.6;
+}
+
+
+
+.divider {
+
+    background-color: var(--medium);
+    border-radius: 100px;
+
+}
+
+.github-icon {
+    background-color: var(--darker);
+
+    -webkit-mask: url("../img/github.png") center/contain no-repeat;
+    mask: url("../img/github.png") center/contain no-repeat;
+}
+
+.fill {width: 100px; height: 100px;}
+
+
+
+.width6rem{
+    width: 6rem;
+}
+.height6rem{
+    height: 6rem;
+}
+.height05rem {
+    height: 0.5rem;
+}
+
+
+.width80 {
+    width: 80%;
+}
+
+
+
+.centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+section {
+    padding: 1rem 2rem;
+}
+p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.max80 {
+    max-width: 80%;
+}
+.font10rem {
+    font-size: 10rem;
+}
+.font6_5rem {
+    font-size: 6.5rem;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+.link-button {
+
+    /* background-color: var(--darker);
+    border: 0.25rem solid var(--accent);
+    border-radius: 1000px; */
+
+    color: var(--dark);
+
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+
+    font-size: 2.2rem;
+
+
+    text-decoration: none;
+
+    margin: 0.5rem auto;
+}
+
+.feature-list {
+    text-align: center;
+    list-style-type: "- ";
+    list-style-position: inside;
+    font-size: 1.7rem;
+    padding: 0;
+}
+
+.inline-link {
+    color: var(--medium);
+    list-style: none;
+    text-decoration: none;
+}
+.inline-link:hover {
+    color: var(--dark);
+}
+
+.quote {
+    font-style: oblique;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.fill-width {
+    width: 100dvw;
+}
