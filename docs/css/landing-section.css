@@ -9,7 +9,7 @@
     grid-template-rows: 1fr 2fr;
     gap: 5rem;
 
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
 
     padding: 2rem;

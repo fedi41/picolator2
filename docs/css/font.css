@@ -2,13 +2,13 @@
 
 html {
     font-family: "Jersey 10";
-    font-size: 1.3vw;
+    font-size: 1.3dvw;
 }
 
 
 @media (max-aspect-ratio: 4/3) {
     html {
-        font-size: min(2vh, 3.2vw);
+        font-size: min(2dvh, 3.2dvw);
     }
 }
 
