@@ -24,11 +24,13 @@ extern "C" {
 
 #include "features/FeatureManager.h"
 
+#include "core/Wifi.h"
+
 int main(void)
 {
-    cyw43_arch_init();
- 
- 
+
+    Wifi::init();
+    Wifi::connect();
     // CONFIG
     // Logger::displayAfterPush = true;    
     TailwindPalette::mirrorPallete = false;

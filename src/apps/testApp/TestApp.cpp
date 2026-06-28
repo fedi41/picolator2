@@ -36,26 +36,30 @@ void TestApp::render() {
     // //display.drawNumber(10, 40, counter, &Font20, WHITE, BLACK);
     Display::clear(Colors::black);
 
-    int w = 240 / 11;
-    int h = 240 / 3;
+    // int w = 240 / 11;
+    // int h = 240 / 3;
 
-    DrawUtils::drawTailwindShade(
-        0, 0, 240, h, CURRENT_THEME->surface
-    );
-    DrawUtils::drawTailwindShade(
-        0, h, 240, h+h, CURRENT_THEME->primary
-    );
-    DrawUtils::drawTailwindShade(
-        0, h+h, 240, 240, CURRENT_THEME->secondary
-    );
+    // DrawUtils::drawTailwindShade(
+    //     0, 0, 240, h, CURRENT_THEME->surface
+    // );
+    // DrawUtils::drawTailwindShade(
+    //     0, h, 240, h+h, CURRENT_THEME->primary
+    // );
+    // DrawUtils::drawTailwindShade(
+    //     0, h+h, 240, 240, CURRENT_THEME->secondary
+    // );
+
+    keyboard.render();
 
 
 }
 
 void TestApp::update() {
-    if (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B))  {Navigation::pop(); }
+    // if (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B))  {Navigation::pop(); }
 
-    
+    keyboard.update();
+
+    if (keyboard.isDirty()) setDirty();
     //this -> setDirty(true); // Mark the app as dirty to trigger a re-render
     //counter++;
 }

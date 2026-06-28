@@ -11,8 +11,8 @@ void Logger::render() {
     Display::blendMode = MIX;
     
     int i = 0;
-    if (log.size() > 35) {
-        i = log.size() - 35;
+    if (log.size() > 60) {
+        i = log.size() - 60;
     }
     
     int y = 0;

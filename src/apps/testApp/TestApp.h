@@ -2,6 +2,7 @@
 
 #include "core/App.h"
 #include "core/Display.h"
+#include "screens/Keyboard.h"
 
 class TestApp : public App {
     public:
@@ -14,4 +15,6 @@ class TestApp : public App {
 
 
         int counter = 0; // Example of a private member variable
+
+        Keyboard keyboard = Keyboard(); 
 };

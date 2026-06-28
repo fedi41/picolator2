@@ -81,7 +81,18 @@ target_include_directories(picolator2 PRIVATE
 )
 
 # Add any user requested libraries
-target_link_libraries(picolator2  LCD OLED Infrared Icm20948 GUI Fonts Config pico_stdlib hardware_spi pico_cyw43_arch_none)
+target_link_libraries(picolator2
+    LCD
+    OLED
+    Infrared
+    Icm20948
+    GUI
+    Fonts
+    Config
+    pico_stdlib
+    hardware_spi
+    pico_cyw43_arch_lwip_threadsafe_background
+)
 
 pico_add_extra_outputs(picolator2)
 
