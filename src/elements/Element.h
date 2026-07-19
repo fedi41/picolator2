@@ -1,6 +1,6 @@
 #pragma once
 
-class Screen {
+class Element {
 
     public:
         virtual void render() = 0;

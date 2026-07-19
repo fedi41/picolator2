@@ -1,12 +1,13 @@
 #pragma once
 
 #include "core/App.h"
-#include "screens/Menu.h"
-#include "screens/MenuOnOff.h"
-#include "screens/ThemePreview.h"
+#include "elements/Menu.h"
+#include "elements/MenuOnOff.h"
+#include "elements/ThemePreview.h"
+#include "WifiPage.h"
 
 enum SettingsPage {
-    SETTINGS_MAIN, SETTINGS_DISPLAY, SETTINGS_THEME, SETTINGS_FEATURES
+    SETTINGS_MAIN, SETTINGS_DISPLAY, SETTINGS_THEME, SETTINGS_FEATURES, SETTINGS_WIFI
 };
 
 
@@ -20,6 +21,8 @@ class SettingsApp : public App {
         ThemePreview themePreviewScreen = ThemePreview();
         Menu mainSettingsMenuScreen = Menu();
         MenuOnOff featureMenu = MenuOnOff();
+        WifiPage wifiPage = WifiPage();
+
 
         int themePreviewIndex = 0;
         

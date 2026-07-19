@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Screen.h"
+#include "Element.h"
 
-class ThemePreview : public Screen {
+class ThemePreview : public Element {
     public:
         void render() override;
         void update() override;

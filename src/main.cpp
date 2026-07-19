@@ -20,7 +20,7 @@ extern "C" {
 #include "gfx/Colors.h"
 #include "assets/Image.h"
 #include "assets/logoLagImg.h"
-
+#include "storage/Storage.h"
 
 #include "features/FeatureManager.h"
 
@@ -29,23 +29,45 @@ extern "C" {
 int main(void)
 {
 
-    Wifi::init();
-    Wifi::connect();
+
+
+//===================================================================================//
+//============================INITIALISATION=========================================//
+//===================================================================================//
+
+
+    printf("Picolator2 starting...\n");
+
+
     // CONFIG
-    // Logger::displayAfterPush = true;    
     TailwindPalette::mirrorPallete = false;
-
+    Logger::onLog = []() {
+        Display::clear(Colors::black);
+        Logger::render();
+        Display::render();
+    };
     Display::blendMode = NORMAL;
-
-
 
     Display::init();
     Display::clear(Colors::black);
     Display::render();
     Logger::d("Display initialized");
 
+    Storage::load();
+    Logger::d("Storage loaded");
+    Logger::d("Magic: " +  Storage::data.magic);
+    Logger::d("SSID: " + std::string(Storage::data.wifiSSID));
+    Logger::d("PASS: " + std::string(Storage::data.wifiPASS));
+    Logger::d("Pico-Dino Highscore: " + std::to_string(Storage::data.dinoRunnerHighScore));
+
+
     Input::init(15, 17, 19, 21, 2, 18, 16, 20, 3);
     Logger::d("Input initialized");
+
+    Logger::d("Trying to connect to WiFi");
+    Wifi::init();
+    Wifi::connect();
+    Wifi::wifiConnected ? Logger::d("WiFi connected") : Logger::d("WiFi not connected");
 
     FeatureManager::init();
     Logger::d("FeatureManager initialized");
@@ -57,17 +79,23 @@ int main(void)
     Navigation::open(AppId::MAIN_MENU);
     Logger::d("started main menu app");
 
-    Logger::d("-- READY --"); 
 
+    Logger::d("-- READY --"); 
 
     // logo splash
     // Display::clear(0);
     // Display::drawImage(LogoImage::lag, 0, 0);
     // Display::render();
-    // wait 500ms
     // DEV_Delay_ms(500);
 
     Logger::d("--- Starting the main loop");
+
+    Logger::onLog = []() {};
+
+//===================================================================================//
+//======================================MAIN=LOOP====================================//
+//===================================================================================//
+
 
     while (true) {
         // INPUT

@@ -5,9 +5,9 @@
 #include <sstream>
 #include <vector>
 #include "core/Display.h"
-#include "screens/Screen.h"
+#include "Element.h"
 
-class MenuOnOff : public Screen {
+class MenuOnOff : public Element {
 
     public:
     void render() override;

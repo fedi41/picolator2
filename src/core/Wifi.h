@@ -15,9 +15,13 @@ public:
     }
 
     static bool connect() {
+
+        Logger::d( Storage::data.wifiSSID );         
+        Logger::d( Storage::data.wifiPASS );
+
         int result = cyw43_arch_wifi_connect_timeout_ms(
             Storage::data.wifiSSID,
-            Storage::data.wifiPSWD,
+            Storage::data.wifiPASS,
             CYW43_AUTH_WPA2_AES_PSK,
             30000
         );
@@ -29,7 +33,7 @@ public:
             Logger::d("Connected!\n");
         }
 
-        wifiConnected = result;
+        wifiConnected = !(bool) result;
         return result;
     }
 

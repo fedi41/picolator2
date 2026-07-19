@@ -9,12 +9,16 @@
 Theme* themes[3] = {&THEMES::classicTheme, &THEMES::testTheme, &THEMES::hackerTheme};
 
 void SettingsApp::init() {
-    mainSettingsMenuScreen.items = {"Display", "Theme", "Features"};
+    mainSettingsMenuScreen.items = {"Display", "Theme", "Features", "Wifi"};
     mainSettingsMenuScreen.heading = "Settings";
 
     featureMenu.heading = "Features";
     featureMenu.items = {};
     featureMenu.states = {};
+
+    wifiPage.ssid = Storage::data.wifiSSID;
+    wifiPage.password = Storage::data.wifiPASS;
+    
     for (Feature* feature : FeatureManager::features) {
         featureMenu.items.push_back(feature->getName());
         featureMenu.states.push_back(false);
@@ -36,12 +40,26 @@ void SettingsApp::render() {
     case SETTINGS_FEATURES:
         featureMenu.render();
         break;
+    case SETTINGS_WIFI:
+        wifiPage.render();
+        break;
     default:
         break;
     }
 
 }
 void SettingsApp::update() {
+
+    if (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B)) {
+        if (currentPage == SETTINGS_WIFI & wifiPage.keboardActive) {}
+        else if (currentPage == SETTINGS_MAIN) {
+            Navigation::pop();
+        }
+        else {
+            currentPage = SETTINGS_MAIN;
+            setDirty();
+        }
+    }
     
     switch (currentPage) {
         case SETTINGS_MAIN:
@@ -59,7 +77,9 @@ void SettingsApp::update() {
                 case 2:
                     currentPage = SETTINGS_FEATURES;
                     break;
-                
+                case 3:
+                    currentPage = SETTINGS_WIFI;
+                    break;
                 default:
                     break;
                 }
@@ -88,18 +108,15 @@ void SettingsApp::update() {
             }
             if (featureMenu.isDirty()) {setDirty();}
             break;
+        case SETTINGS_WIFI:
+            wifiPage.update();
+            if (wifiPage.isDirty()) {setDirty();}
+            break;
         default:
             break;
     }
 
-    if (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B)) {
-        if (currentPage == SETTINGS_MAIN) {
-            Navigation::pop();
-        } else {
-            currentPage = SETTINGS_MAIN;
-            setDirty();
-        }
-    }
+
     
 }
 

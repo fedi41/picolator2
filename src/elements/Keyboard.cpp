@@ -3,6 +3,9 @@
 void Keyboard::render() {
 
 
+
+    //Display::drawCenteredString(20, string, CURRENT_THEME->primary[5], Display::alpha, &Font6x8, 2);
+
     Display::drawRect(
         0,137,240,140, CURRENT_THEME->secondary[7]
     );
@@ -20,7 +23,7 @@ void Keyboard::render() {
             );
         }
         Display::drawChar(
-            x, y, layoutNormal[i], CURRENT_THEME->secondary[7], Display::alpha, &Font6x8, 3
+            x, y, (shift ? layoutShift[i] : layoutNormal[i]), CURRENT_THEME->secondary[7], Display::alpha, &Font6x8, 3
         );
     }
 
@@ -32,18 +35,43 @@ void Keyboard::update() {
 
     if (Input::justPressed(KEY_LEFT)) {
         pointer -= 1;
+        setDirty();
     }
     if (Input::justPressed(KEY_RIGHT)) {
         pointer += 1;
+        setDirty();
     }
     if (Input::justPressed(KEY_UP)) {
         pointer -= 10;
+        setDirty();
     }
     if (Input::justPressed(KEY_DOWN)) {
         pointer += 10;
+        setDirty();
+    }
+    if (Input::justPressed(KEY_A)) {
+        string = string + (shift ? layoutShift[pointer] : layoutNormal[pointer]);
+        setDirty();
+        onChanged();
+    }
+    if (Input::justPressed(KEY_X)) {
+        string.pop_back();
+        setDirty();
+        onChanged();
     }
 
-    setDirty();
+    if (Input::pressed(KEY_CTRL)) {
+        if (!shift) {
+            setDirty();
+        }
+        shift = true;
+    } else {
+        if (shift) {
+            setDirty();
+        }
+        shift = false;
+    }
+
         
 
 };

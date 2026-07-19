@@ -49,11 +49,11 @@ void MenuOnOff::render() {
 void MenuOnOff::update() {
     //Logger::d("Menu update");
 
-    if (Input::justPressed(KEY_DOWN) || Input::justPressed(KEY_X)) {
+    if (Input::justPressed(KEY_DOWN) || Input::justPressed(KEY_Y)) {
         pointer += 1;
         setDirty();
     }
-    if (Input::justPressed(KEY_UP) || Input::justPressed(KEY_B)) {
+    if (Input::justPressed(KEY_UP) || Input::justPressed(KEY_X)) {
         pointer -= 1;
         setDirty();
     }
