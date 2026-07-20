@@ -28,7 +28,7 @@ extern "C" {
 
 int main(void)
 {
-
+ 
 
 
 //===================================================================================//
@@ -55,7 +55,7 @@ int main(void)
 
     Storage::load();
     Logger::d("Storage loaded");
-    Logger::d("Magic: " +  Storage::data.magic);
+    // Logger::d("Magic: " +  Storage::data.magic);
     Logger::d("SSID: " + std::string(Storage::data.wifiSSID));
     Logger::d("PASS: " + std::string(Storage::data.wifiPASS));
     Logger::d("Pico-Dino Highscore: " + std::to_string(Storage::data.dinoRunnerHighScore));

@@ -11,13 +11,13 @@ public:
             Logger::d("WiFi init failed\n");
             return false;
         }
+        cyw43_arch_enable_sta_mode();
         return true;
     }
 
     static bool connect() {
-
-        Logger::d( Storage::data.wifiSSID );         
-        Logger::d( Storage::data.wifiPASS );
+        Logger::d(Storage::data.wifiSSID);
+        Logger::d(Storage::data.wifiPASS);
 
         int result = cyw43_arch_wifi_connect_timeout_ms(
             Storage::data.wifiSSID,
@@ -26,16 +26,11 @@ public:
             30000
         );
 
-        if (result) {
-            Logger::d("Connection failed\n");
-        }
-        else {
-            Logger::d("Connected!\n");
-        }
+        Logger::d(("Connect result: " + std::to_string(result)).c_str());
+        Logger::d(("Link status: " + std::to_string(cyw43_wifi_link_status(&cyw43_state, CYW43_ITF_STA))).c_str());
 
-        wifiConnected = !(bool) result;
-        return result;
+        wifiConnected = (result == 0);
+        return wifiConnected;
     }
-
     static inline bool wifiConnected = false;
 };
