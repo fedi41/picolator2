@@ -4,5 +4,6 @@ enum AppId {
     MAIN_MENU,
     SETTINGS,
     TEST,
-    DINO_RUNNER
+    DINO_RUNNER,
+    PICOFETCH
 };

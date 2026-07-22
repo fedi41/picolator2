@@ -9,6 +9,7 @@ extern "C" {
 #include "fonts/fonts.h"
 #include "gfx/Colors.h"
 #include "gfx/Theme.h"
+#include "assets/Image.h"
 
 #include "core/Input.h"
 #include "core/Navigation.h"
@@ -49,17 +50,14 @@ void TestApp::render() {
     //     0, h+h, 240, 240, CURRENT_THEME->secondary
     // );
 
-    keyboard.render();
+    Display::drawImage(Stardance::logo, 0,0);
+
 
 
 }
 
 void TestApp::update() {
-    // if (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B))  {Navigation::pop(); }
-
-    keyboard.update();
-
-    if (keyboard.isDirty()) setDirty();
+    if (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B))  {Navigation::pop(); }
     //this -> setDirty(true); // Mark the app as dirty to trigger a re-render
     //counter++;
 }

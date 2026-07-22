@@ -21,6 +21,10 @@ namespace LogoImage {
     extern const ImageRGB lag;
 }
 
+namespace Stardance {
+    extern const ImageRGB logo;
+}
+
 namespace DinoRunnerAssets {
 
     namespace Dino

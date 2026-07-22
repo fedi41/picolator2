@@ -10,6 +10,7 @@
 #include "apps/settingsApp/SettingsApp.h"
 #include "apps/testApp/TestApp.h"
 #include "apps/dinoRunner/DinoRunnerApp.h"
+#include "apps/picofetch/Picofetch.h"
 
 
 #include "core/AppId.h"
@@ -25,6 +26,7 @@ private:
     static inline SettingsApp settingsApp;
     static inline TestApp testApp;
     static inline DinoRunnerApp dinoRunnerApp;
+    static inline Picofetch picofetch;
 
     static App* getApp(AppId id) {
 
@@ -40,6 +42,9 @@ private:
 
             case AppId::DINO_RUNNER: 
                 return &dinoRunnerApp;
+
+            case AppId::PICOFETCH:
+                return &picofetch;
         }
 
     return nullptr;

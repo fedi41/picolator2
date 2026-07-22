@@ -9,6 +9,7 @@ namespace Colors {
     constexpr uint16_t red = 0x00f8;
     constexpr uint16_t blue = 0x1f00;
     constexpr uint16_t green = 0xe007;
+    constexpr uint16_t cyan = 0xff07;
 };
 
 #define TW_COUNT 11
