@@ -11,6 +11,7 @@
 #include "apps/testApp/TestApp.h"
 #include "apps/dinoRunner/DinoRunnerApp.h"
 #include "apps/picofetch/Picofetch.h"
+#include "apps/aichat/AiChatApp.h"
 
 
 #include "core/AppId.h"
@@ -27,6 +28,7 @@ private:
     static inline TestApp testApp;
     static inline DinoRunnerApp dinoRunnerApp;
     static inline Picofetch picofetch;
+    static inline AiChatApp aiChatApp;
 
     static App* getApp(AppId id) {
 
@@ -45,6 +47,9 @@ private:
 
             case AppId::PICOFETCH:
                 return &picofetch;
+            
+            case AppId::AI_CHAT_APP:
+                return &aiChatApp;
         }
 
     return nullptr;

@@ -5,5 +5,6 @@ enum AppId {
     SETTINGS,
     TEST,
     DINO_RUNNER,
-    PICOFETCH
+    PICOFETCH,
+    AI_CHAT_APP
 };

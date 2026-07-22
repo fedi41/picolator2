@@ -8,8 +8,8 @@
 
 void MainMenuApp::init() {
     Logger::d("Initializing MainApp");
-    menuScreen.items = {"Picofetch", "Settings", "Pico-Dino", "...", "..."};
-    apps = {AppId::PICOFETCH, AppId::SETTINGS, AppId::DINO_RUNNER, AppId::TEST, AppId::TEST};
+    menuScreen.items = {"Picofetch", "Settings", "Pico-Dino", "AI chat", "..."};
+    apps = {AppId::PICOFETCH, AppId::SETTINGS, AppId::DINO_RUNNER, AppId::AI_CHAT_APP, AppId::TEST};
     menuScreen.heading = "PICOLATOR";
     setDirty();
 }
