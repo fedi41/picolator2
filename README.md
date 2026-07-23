@@ -4,17 +4,14 @@ PICOLATOR is a handheld device powered by a Raspberry Pi Pico, featuring a custo
 
 <img width="669" height="336" alt="PICOLATOR" src="https://github.com/user-attachments/assets/01a0856d-54fe-4e2f-9b28-93de863d2f96" />
 
-## Features
+## current Features
 
 - Modular feature system
 - Built-in Dino Runner game
 - Blend modes (Difference & Normal & Mix)
-- App manager with a stack-based navigation system
-- Multiple color themes
-- Lightweight and modular architecture
-- Log system
-
-> 🚧 More features coming soon...
+- App manager 
+- Multiple color themes (wirh Tailwind colors)
+- Log system 
 
 ---
 
@@ -22,53 +19,50 @@ PICOLATOR is a handheld device powered by a Raspberry Pi Pico, featuring a custo
 
 ### Pico-Dino
 
-A recreation of the iconic Chrome Dino game.
+A copy of the iconic game, on the pico
 
 Features:
 - High score saving
-- Smooth gameplay
-- Optimized for the Pico LCD
+- the basic gameplay
 
 <img width="1116" height="562" alt="Pico Dino" src="https://github.com/user-attachments/assets/9a10bde9-32ca-41da-a45f-145c50e9bae6" />
 
 ### Settings
 
-Manage your device through a simple settings app.
+U can manage different things here :3
 
 Features:
 - Theme selection
 - Feature toggles
-- Persistent settings
+
+coming up:
+- wifi settings
 
 ---
 
 ## Hardware
 
-The project is currently tested on the following hardware:
+I was tested on the following hardware:
 
 - Raspberry Pi Pico 2 W
-- Waveshare Pico LCD 1.3" (240 × 240)
-- GPIO buttons for input
-
-The display can either be connected through an extension board or directly to the Pico.
+- Waveshare Pico LCD 1.3" 240×240 (with gpio buttons) 
 
 ---
 
 ## Software
 
-- Written in **C++**
-- Built using the Raspberry Pi Pico SDK
+- Built using the Raspberry Pi Pico SDK (C++ / C)
 - Custom UI framework
-- Custom rendering engine
-- Lightweight architecture
+- Custom rendering engine (almost)
 
 ---
 
 ## Status
 
-🚧 **Active development**
+**DEVELOPMENT**
 
-PICOLATOR is still under active development, and new features are added regularly.
+PICOLATOR is still in development, follow the progress on Stardance:
+https://stardance.hackclub.com/projects/4738
 
 ---
 
