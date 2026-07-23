@@ -13,20 +13,28 @@
 
 
 void AiChatApp::init() {
-    // Initialize the main screen app
+
+    
 
 }
 
 
 
 void AiChatApp::render() {
+    // BG
+    Display::clear(CURRENT_THEME->surface[2]);
 
-    Display::clear(Colors::black);
+    // HEADING
+    Display::drawRect(0,0,240,50, CURRENT_THEME->primary[8]);
 
-    Display::drawImage(Stardance::logo, 0,0);
+    Display::drawCenteredString(11, "AI-CHAT", CURRENT_THEME->primary[2], Display::alpha, &Font6x8, 4, -3);
+    Display::drawCenteredString(8, "AI-CHAT", CURRENT_THEME->primary[5], Display::alpha, &Font6x8, 4, -6);
+
+    
+
+
 
 }
-
 void AiChatApp::update() {
     if (Input::justPressed(KEY_LEFT) || Input::justPressed(KEY_B))  {Navigation::pop(); }
 }
