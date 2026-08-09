@@ -24,6 +24,8 @@ public:
         //     render();
         //     Display::render();
         // }
+        printf(message.data());
+
         dirty = true;
     }
     // static inline bool displayAfterPush = false;

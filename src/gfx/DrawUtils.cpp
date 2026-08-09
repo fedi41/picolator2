@@ -66,3 +66,14 @@ bool DrawUtils::overlap(
 
     return false;
 }
+
+
+void DrawUtils::drawLines(int x, int y, std::vector<std::string> lines, uint16_t fgColor, uint16_t bgColor, FONT* font, int scale) {
+    int lineY = y;
+    for (const auto& line : lines) {
+
+        Display::drawString(x, lineY, line, fgColor, bgColor, false, font, scale);
+
+        lineY += font->Height*scale;
+    }
+}
