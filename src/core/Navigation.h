@@ -62,7 +62,7 @@ public:
 
         stack.push_back(appId);
         
-        Logger::d("Added app to the stack");
+        printf("Added app to the stack\n");
 
         getApp(appId)->init();
         getApp(appId)->setDirty();

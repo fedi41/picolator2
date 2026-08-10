@@ -8,7 +8,6 @@ extern "C" {
 #include "Display.h"
 #include "gfx/Colors.h"
 #include "fonts/fonts.h"
-#include "core/Logger.h"
 #include "pico/time.h"
 #include "core/Input.h"
 
@@ -62,9 +61,6 @@ void Display::init(uint16_t a) {
     clear(Colors::white);
 
     alpha = a;
-
-    uint16_t c = blend565(Colors::red, Colors::blue);
-    Logger::d(std::to_string(c));
     // alphaSwapped = (a >> 8) | (a << 8);
 }
 void Display::clear(uint16_t color) {

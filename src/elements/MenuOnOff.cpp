@@ -4,8 +4,6 @@
 #include "gfx/Colors.h"
 #include "core/Input.h"
 
-#include "core/Logger.h"
-
 void MenuOnOff::render() {
     // Logger::d("Menu render");
 

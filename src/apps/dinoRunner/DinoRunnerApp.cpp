@@ -1,7 +1,6 @@
 #include "DinoRunnerApp.h"
 #include "core/Input.h"
 #include "core/Display.h"
-#include "core/Logger.h"
 #include "core/Navigation.h"
 #include "gfx/Colors.h"
 #include "assets/Image.h"

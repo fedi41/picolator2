@@ -16,7 +16,6 @@ extern "C" {
 #include "core/App.h"
 
 #include "core/Navigation.h"
-#include "core/Logger.h"
 #include "gfx/Colors.h"
 #include "assets/Image.h"
 #include "assets/logoLagImg.h"
@@ -43,46 +42,40 @@ int main(void)
 
     // CONFIG
     TailwindPalette::mirrorPallete = false;
-    Logger::onLog = []() {
-        Display::clear(Colors::black);
-        Logger::render();
-        Display::render();
-    };
     Display::blendMode = NORMAL;
 
     Display::init();
     Display::clear(Colors::black);
     Display::render();
-    Logger::d("Display initialized");
+    printf("Display initialized\n");
 
     Storage::load();
-    Logger::d("Storage loaded");
+    printf("Storage loaded\n");
     // Logger::d("Magic: " +  Storage::data.magic);
-    Logger::d("SSID: " + std::string(Storage::data.wifiSSID));
-    Logger::d("PASS: " + std::string(Storage::data.wifiPASS));
-    Logger::d("Pico-Dino Highscore: " + std::to_string(Storage::data.dinoRunnerHighScore));
+    printf(("SSID: " + std::string(Storage::data.wifiSSID)).data());
+    printf(("\nPASS: " + std::string(Storage::data.wifiPASS)).data());
+    printf(("\nPico-Dino Highscore: " + std::to_string(Storage::data.dinoRunnerHighScore)).data());
 
 
     Input::init(15, 17, 19, 21, 2, 18, 16, 20, 3);
-    Logger::d("Input initialized");
+    printf("\nInput initialized\n");
 
-    Logger::d("Trying to connect to WiFi");
+    printf("Trying to connect to WiFi\n");
     Wifi::init();
     Wifi::connect();
-    Wifi::wifiConnected ? Logger::d("WiFi connected") : Logger::d("WiFi not connected");
+    Wifi::wifiConnected ? printf("WiFi connected\n")  :  printf("WiFi not connected\n");
 
     FeatureManager::init();
-    Logger::d("FeatureManager initialized");
+    printf("FeatureManager initialized\n");
 
     FeatureManager::setEnabled("LogoOverlayFeature", false);
     FeatureManager::setEnabled("DisplaySpinFeature", false);
-    FeatureManager::setEnabled("LogDisplayFeature", false);
 
     Navigation::open(AppId::MAIN_MENU);
-    Logger::d("started main menu app");
+    printf("started main menu app\n");
 
 
-    Logger::d("-- READY --"); 
+    printf("-- READY --\n"); 
 
     // logo splash
     // Display::clear(0);
@@ -90,9 +83,7 @@ int main(void)
     // Display::render();
     // DEV_Delay_ms(500);
 
-    Logger::d("--- Starting the main loop");
-
-    Logger::onLog = []() {};
+    printf("--- Starting the main loop ---\n");
 
 //===================================================================================//
 //======================================MAIN=LOOP====================================//

@@ -3,9 +3,6 @@
 
 #include "LogoOverlayFeature.h"
 #include "DisplaySpinFeature.h"
-#include "LogDisplayFeature.h"
-#include "core/Logger.h"
-
 
 void FeatureManager::update() {
     for (auto feature : features) {
@@ -30,18 +27,15 @@ bool FeatureManager::isEnabled(const char* featureName) {
 }
 void FeatureManager::addFeature(Feature* feature) {
     features.push_back(feature);
-        Logger::d(feature->getName());
+        printf(feature->getName());
     featureIds[feature->getName()] = std::size(features)-1;
-        Logger::d("Succes");
+        printf("Succes");
 }
 void FeatureManager::init() {
-        Logger::d("Initialising features...");
+        printf("Initialising features...");
     LogoOverlayFeature* logoOverlayFeature = new LogoOverlayFeature();
     DisplaySpinFeature* displaySpinFeature = new DisplaySpinFeature();
-    LogDisplayFeature* logDisplayFeature = new LogDisplayFeature();
-        Logger::d("Adding features...");
+        printf("Adding features...");
     addFeature(logoOverlayFeature);      
     addFeature(displaySpinFeature);      
-    addFeature(logDisplayFeature);      
-
 }

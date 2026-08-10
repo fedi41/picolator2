@@ -1,7 +1,6 @@
 #pragma once
 
 #include "core/Display.h"
-#include "core/Logger.h"
 
 class App {
 public:

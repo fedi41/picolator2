@@ -1,13 +1,12 @@
 
 
 #include "MainMenuApp.h"
-#include "core/Logger.h"
 #include "core/Navigation.h"
 #include "core/AppId.h"
 #include "core/Input.h"
 
 void MainMenuApp::init() {
-    Logger::d("Initializing MainApp");
+    printf("Initializing MainApp");
     menuScreen.items = {"Picofetch", "Settings", "Pico-Dino", "AI chat", "..."};
     apps = {AppId::PICOFETCH, AppId::SETTINGS, AppId::DINO_RUNNER, AppId::AI_CHAT_APP, AppId::TEST};
     menuScreen.heading = "PICOLATOR";
