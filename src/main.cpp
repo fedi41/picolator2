@@ -49,6 +49,12 @@ int main(void)
     Display::render();
     printf("Display initialized\n");
 
+
+    Display::clear(0);
+    Display::drawImage(LogoImage::normal, 0, 0);
+    Display::render();
+
+
     Storage::load();
     printf("Storage loaded\n");
     // Logger::d("Magic: " +  Storage::data.magic);
@@ -74,14 +80,7 @@ int main(void)
     Navigation::open(AppId::MAIN_MENU);
     printf("started main menu app\n");
 
-
     printf("-- READY --\n"); 
-
-    // logo splash
-    // Display::clear(0);
-    // Display::drawImage(LogoImage::lag, 0, 0);
-    // Display::render();
-    // DEV_Delay_ms(500);
 
     printf("--- Starting the main loop ---\n");
 
