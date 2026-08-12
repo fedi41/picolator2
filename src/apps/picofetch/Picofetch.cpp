@@ -75,15 +75,15 @@ void Picofetch::render() {
     Display::drawCenteredString(8, "PICOFETCH",  Colors::white, Display::alpha, &Font6x8, 4, -6);
  
     int y = 55;
-    const int rowHeight = 14;     
+    const int rowHeight = 20;     
     const int labelX = 10;
     const int valueX = 110;
  
     char buf[32];
  
     auto row = [&](const char* label, const char* value, uint16_t valueColor) {
-        Display::drawString(labelX, y, label, Colors::white, Display::alpha, false, &Font6x8, 1);
-        Display::drawString(valueX, y, value, valueColor, Display::alpha, false, &Font6x8, 1);
+        Display::drawString(labelX, y, label, Colors::white, Display::alpha, false, &Font6x8, 2);
+        Display::drawString(valueX, y, value, valueColor, Display::alpha, false, &Font6x8, 2);
         y += rowHeight;
     };
  
@@ -96,16 +96,16 @@ void Picofetch::render() {
     snprintf(buf, sizeof(buf), "%.1f C", tempC);
     row("Temp:", buf, Colors::cyan);
  
-    snprintf(buf, sizeof(buf), "%lu KB", (unsigned long)(freeHeapBytes / 1024));
-    row("Free RAM:", buf, Colors::cyan);
+    // snprintf(buf, sizeof(buf), "%lu KB", (unsigned long)(freeHeapBytes / 1024));
+    // row("Free RAM:", buf, Colors::cyan);
  
     row("SDK:", sdkVersion.c_str(), Colors::cyan);
  
     // Unique ID (truncated — full ID is 16 bytes / 32 hex chars)
-    std::string shortId = uniqueId.substr(0, 12) + "...";
+    std::string shortId = uniqueId.substr(0, 7) + "...";
     row("ID:", shortId.c_str(), Colors::cyan);
  
-    y += 6; // small gap before WiFi block
+    y += 14; // small gap before WiFi block
  
     // WiFi status
     if (Wifi::wifiConnected) {
