@@ -1,4 +1,4 @@
-
+#pragma once
 // This file handles the connection to the mistral API :3
 // why is tcp so complicated XD
 

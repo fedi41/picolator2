@@ -18,7 +18,7 @@ class Keyboard : public Element {
     void update() override;
     
     int pointer = 0;
-    const char* layoutNormal = "1234567890qwertyuiopasdfghjkl'zxcvbnm,./";
+    const char* layoutNormal = "1234567890qwertyuiopasdfghjkl'zxcvbnm,. ";
     const char* layoutShift  = "!@#$%^&*()QWERTYUIOPASDFGHJKL-ZXCVBNM<>?";
 
 

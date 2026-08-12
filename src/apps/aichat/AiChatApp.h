@@ -1,9 +1,13 @@
 #pragma once
 
+#include <string>
+
+
 #include "core/App.h"
 #include "core/Display.h"
 #include "elements/Keyboard.h"
-#include <string>
+#include "Mistral.h"
+
 
 
 class AiChatApp : public App {
@@ -13,11 +17,14 @@ class AiChatApp : public App {
         void update() override;
         void init() override;
         void onKeyboardCallback();
+        void onAiCallback(std::string answer);
 
     private:
 
         std::string prompt = "";
-        std::string answer = "123456789abcdefghijklmnopqrstuvwxyz THIS IS A TEST STRING bla bla bla bla !@#$$%$^$%&%^*^&";
+        std::string answer = "";
+
+        bool thinking = false;
         
         bool keyboardOpened = false; 
         Keyboard keyboard = Keyboard([this](){this->onKeyboardCallback();}); 

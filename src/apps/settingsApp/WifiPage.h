@@ -12,7 +12,7 @@ public:
         if (keboardActive) {
             keyboard.update();
             if (keyboard.isDirty()) setDirty();
-            if (Input::justPressed(KEY_B)) {
+            if (Input::justPressed(KEY_X)) {
                 keboardActive = false;
                 setDirty();
             }
@@ -22,7 +22,7 @@ public:
                 keboardActive = true;
                 setDirty();
             }
-            if (Input::justPressed(KEY_X)) {
+            if (Input::justPressed(KEY_Y)) {
                 
                 strncpy(Storage::data.wifiSSID, ssid.c_str(), sizeof(Storage::data.wifiSSID) - 1);
                 Storage::data.wifiSSID[sizeof(Storage::data.wifiSSID) - 1] = '\0'; // sicherstellen, dass Nullterminator gesetzt ist
@@ -73,14 +73,14 @@ public:
 
         if (keboardActive) {
             
-            Display::drawString(0, 90, "Press B to exit edit", CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 1);
+            Display::drawString(0, 90, "Press X to exit edit", CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 1);
 
             keyboard.render();
         } else {
 
             Display::drawString(0, 50, "Press A to edit", CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 1);
-            Display::drawString(0, 60, "Press X to save", CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 1);
-            Display::drawString(0, 70, "Press B to discard", CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 1);
+            Display::drawString(0, 60, "Press Y to save", CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 1);
+            Display::drawString(0, 70, "Press X to discard", CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 1);
 
             if (Wifi::wifiConnected) {
                 Display::drawString(0, 80, "!! WIFI CONNECTED !!",  CURRENT_THEME->surface[8], Display::alpha, false, &Font6x8, 2);
