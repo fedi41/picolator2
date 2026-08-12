@@ -17,7 +17,7 @@ class AiChatApp : public App {
     private:
 
         std::string prompt = "";
-        std::string answer = "gsgkfhkgjhfghkjdfhguhdfgjkndfiughdfjklgdfiughdfjkgniuhfughjkghuhjgiudfhgkhfgher";
+        std::string answer = "123456789abcdefghijklmnopqrstuvwxyz THIS IS A TEST STRING bla bla bla bla !@#$$%$^$%&%^*^&";
         
         bool keyboardOpened = false; 
         Keyboard keyboard = Keyboard([this](){this->onKeyboardCallback();}); 

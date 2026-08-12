@@ -49,15 +49,17 @@ void Keyboard::update() {
         pointer += 10;
         setDirty();
     }
-    if (Input::justPressed(KEY_A)) {
+    if (Input::justPressed(KEY_Y)) {
         string = string + (shift ? layoutShift[pointer] : layoutNormal[pointer]);
         setDirty();
         onChanged();
     }
     if (Input::justPressed(KEY_X)) {
-        string.pop_back();
-        setDirty();
-        onChanged();
+        if (!string.empty()) {
+            string.pop_back();
+            setDirty();
+            onChanged();
+        }
     }
 
     if (Input::pressed(KEY_CTRL)) {
@@ -71,7 +73,4 @@ void Keyboard::update() {
         }
         shift = false;
     }
-
-        
-
 };
