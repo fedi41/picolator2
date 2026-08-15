@@ -92,6 +92,8 @@ target_link_libraries(picolator2
     pico_stdlib
     hardware_spi
     pico_cyw43_arch_lwip_threadsafe_background
+    pico_lwip_mbedtls 
+    pico_mbedtls 
 )
 
 pico_add_extra_outputs(picolator2)

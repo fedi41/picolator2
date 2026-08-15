@@ -49,7 +49,7 @@ void AiChatApp::render() {
             DrawUtils::drawLines(5, 75, TextUtils::stringFit(prompt, 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 2); 
         } else {
             Display::drawCenteredString(58, "Response:", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
-            DrawUtils::drawLines(5, 75, TextUtils::stringFit(answer, 39), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 1); 
+            DrawUtils::drawLines(5, 75, TextUtils::stringFit(answer, 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 2); 
         }
     }
 }
