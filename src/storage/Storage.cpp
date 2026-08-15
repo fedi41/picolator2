@@ -11,10 +11,7 @@ SaveData Storage::load() {
     memcpy(&tmp, (void*)(XIP_BASE + FLASH_TARGET_OFFSET), sizeof(SaveData));
 
     if (tmp.magic != 0x5049434F) {
-        tmp.magic = 0x5049434F;
-        tmp.dinoRunnerHighScore = 0;
-        strcpy(tmp.wifiSSID, "PicoLator");
-        strcpy(tmp.wifiPASS, "picolator");
+        reset(tmp);
     }
 
     data = tmp;
