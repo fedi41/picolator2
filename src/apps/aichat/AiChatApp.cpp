@@ -31,7 +31,7 @@ void AiChatApp::render() {
     // primary - ai bot
     // secondary - user
 
-    if (thinking) {
+    if (status == THINKING) {
 
         Display::drawCenteredString(58, "---THINKING---", CURRENT_THEME->primary[9], Display::alpha, &Font6x8, 2);
 
@@ -73,7 +73,7 @@ void AiChatApp::update() {
     if (Input::justPressed(KEY_Y)) {
         keyboardOpened = false;
 
-        thinking = true;
+        status = THINKING;
 
         send_promt(prompt, [this](std::string answer) {
             onAiCallback(answer);
@@ -85,7 +85,8 @@ void AiChatApp::update() {
 
 void AiChatApp::onAiCallback(std::string ans) {
     answer = ans;
-    thinking = false;
+    status = SUCCESS;
+    setDirty();
 }
 
 void AiChatApp::onKeyboardCallback() {

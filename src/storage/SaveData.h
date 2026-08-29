@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstring>
 
 struct SaveData {
     uint32_t magic; // "PICO"
@@ -8,7 +9,7 @@ struct SaveData {
     char mistralApiKey[32];
 };
 
-void reset(SaveData data) {
+inline void reset(SaveData data) {
     data.magic = 0x5049434F;
     data.dinoRunnerHighScore = 0;
     strcpy(data.wifiSSID, "ssid");
