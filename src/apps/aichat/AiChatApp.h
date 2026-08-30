@@ -8,9 +8,6 @@
 #include "elements/Keyboard.h"
 #include "Mistral.h"
 
-enum AIchatStatus {
-  THINKING, WRONG_API_KEY, NO_INTERNET, SUCCESS, CHECKING_CONNECTION
-};
 
 class AiChatApp : public App {
     public:
@@ -25,8 +22,9 @@ class AiChatApp : public App {
 
         std::string prompt = "";
         std::string answer = "";
+        MistralResult result = 
 
-        AIchatStatus status = CHECKING_CONNECTION;
+        bool thinking = false;
         
         bool keyboardOpened = false; 
         Keyboard keyboard = Keyboard([this](){this->onKeyboardCallback();}); 
