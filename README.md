@@ -72,11 +72,11 @@ This is the second generation of the PICOLATOR project.
 
 **Original Python version:**
 
-https://github.com/fedi41-prog/picolator
+https://github.com/fedi41-prog/picolator1
 
 **Project website:**
 
-https://fedi41-prog.github.io/picolator2
+https://fedi41-prog.github.io/picolator
 
 **Stardance Devlogs:**
 
