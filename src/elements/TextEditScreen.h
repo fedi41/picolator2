@@ -1,7 +1,7 @@
 #include "elements/Element.h"
 #include "elements/Keyboard.h"
 
-class AiChatPage : public Element {
+class TextEditScreen: public Element {
 public:
     void update() override {
         if (keboardActive) {

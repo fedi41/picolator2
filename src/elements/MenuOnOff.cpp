@@ -11,16 +11,16 @@ void MenuOnOff::render() {
     Display::clear(CURRENT_THEME->surface[2]);
 
     // HEADING
-    Display::drawRect(0,0,240,50, CURRENT_THEME->primary[8]);
+    Display::drawRect(0,0,240,60, CURRENT_THEME->primary[8]);
 
-    Display::drawCenteredString(11, heading, CURRENT_THEME->primary[2], Display::alpha, &Font6x8, 4, -3);
-    Display::drawCenteredString(8, heading, CURRENT_THEME->primary[5], Display::alpha, &Font6x8, 4, -6);
+    Display::drawCenteredString(21, heading, CURRENT_THEME->primary[2], Display::alpha, &Font6x8, 4, -3);
+    Display::drawCenteredString(18, heading, CURRENT_THEME->primary[5], Display::alpha, &Font6x8, 4, -6);
 
 
     // Content
 
     for (int i = 0; i < MIN(4,items.size()); i++) {
-        int y = 50 + i * 47;
+        int y = 60 + i * 44;
 
         uint16_t text_color = (states[scroll + i] ? Colors::red : Colors::green);
 
@@ -30,7 +30,7 @@ void MenuOnOff::render() {
             text_color = Colors::black;
         }
 
-        Display::drawRect(2, y+3, 238, y+47, bg_color);
+        Display::drawRect(2, y+3, 238, y+44, bg_color);
 
         Display::drawCenteredString(y+17, items[scroll + i], text_color, Display::alpha, &Font6x8, 2);
     }

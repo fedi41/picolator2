@@ -11,19 +11,6 @@ class TaskBar : public Element {
     void render() override;
     void update() override;
     
-    int pointer = 0;
-    const char* layoutNormal = "1234567890qwertyuiopasdfghjkl'zxcvbnm,. ";
-    const char* layoutShift  = "!@#$%^&*()QWERTYUIOPASDFGHJKL-ZXCVBNM<>?";
-
-
-    
-    std::function<void()> onChanged;
-    bool shift = false;
-    std::string string = "";
-    //const char* layoutNormal = "1234567890qwertyuiopasdfghjkl-zxcvbnm---";
-
-
-    Keyboard(std::function<void()> callback = [](){}) {
-        onChanged = callback;
-    }
+    std::string currentAppName = "no app running xD";
+    bool wlanConnected = false;
 };

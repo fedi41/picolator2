@@ -52,8 +52,8 @@ private:
                 return &aiChatApp;
         }
 
-    return nullptr;
-}
+        return nullptr;
+    }
 
 public:
     static void open(AppId appId) {

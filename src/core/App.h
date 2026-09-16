@@ -21,7 +21,10 @@ public:
     }
     void setDirty(bool isDirty = true) {
         dirty = isDirty;
-    } 
+    }
+    bool isDirty() {
+        return dirty;
+    }
 
 private:
     bool dirty = true;

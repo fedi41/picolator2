@@ -22,6 +22,7 @@ extern "C" {
 #include "storage/Storage.h"
 
 #include "features/FeatureManager.h"
+#include "elements/TaskBar.h"
 
 #include "core/Wifi.h"
 
@@ -78,6 +79,7 @@ int main(void)
     FeatureManager::setEnabled("DisplaySpinFeature", false);
 
     Navigation::open(AppId::MAIN_MENU);
+    TaskBar taskbar = TaskBar();
     printf("started main menu app\n");
 
     printf("-- READY --\n"); 
@@ -98,8 +100,13 @@ int main(void)
         // FEATURE UPDATE
         FeatureManager::update();
 
+        taskbar.update();
+        if (Navigation::current()->isDirty()) taskbar.setDirty();
+
         // APP DRAW
         Navigation::current()->renderIfDirty(); // Only render if there are changes to the app
+        // TASKBAR DRAW
+        taskbar.renderIfDirty();
         // FEATURE DRAW
         FeatureManager::render(Display::dirty);
         //Display::dirty = true;
