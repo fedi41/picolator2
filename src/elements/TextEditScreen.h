@@ -42,7 +42,7 @@ public:
 
         Display::clear(CURRENT_THEME->surface[2]);
 
-        Display::drawString(0, 5, "-->" + string, Display::alpha, CURRENT_THEME->surface[9], false, &Font6x8, 1);
+        Display::drawString(0, 15, "-->" + string, Display::alpha, CURRENT_THEME->surface[9], false, &Font6x8, 1);
 
         if (keboardActive) {
             

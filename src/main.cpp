@@ -48,6 +48,7 @@ int main(void)
     Display::init();
     Display::clear(Colors::black);
     Display::render();
+    DEV_SET_PWM(10);
     printf("Display initialized\n");
 
 

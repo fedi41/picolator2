@@ -21,10 +21,10 @@ void AiChatApp::render() {
     Display::clear(CURRENT_THEME->surface[2]);
 
     // HEADING
-    Display::drawRect(0,0,240,50, CURRENT_THEME->primary[8]);
+    Display::drawRect(0,0,240,60, CURRENT_THEME->primary[8]);
 
-    Display::drawCenteredString(11, "AI-CHAT", CURRENT_THEME->primary[2], Display::alpha, &Font6x8, 4, -3);
-    Display::drawCenteredString(8, "AI-CHAT", CURRENT_THEME->primary[5], Display::alpha, &Font6x8, 4, -6);
+    Display::drawCenteredString(21, "AI-CHAT", CURRENT_THEME->primary[2], Display::alpha, &Font6x8, 4, -3);
+    Display::drawCenteredString(18, "AI-CHAT", CURRENT_THEME->primary[5], Display::alpha, &Font6x8, 4, -6);
 
     
 
@@ -41,26 +41,27 @@ void AiChatApp::render() {
         printf("rendering promt ig...\n");
         printf(prompt.data());
         printf("\n");
-        DrawUtils::drawLines(5, 60, TextUtils::stringFit(prompt, 19), CURRENT_THEME->secondary[8], Display::alpha, &Font6x8, 2);
+        DrawUtils::drawLines(5, 70, TextUtils::stringFit(prompt, 19), CURRENT_THEME->secondary[8], Display::alpha, &Font6x8, 2);
     } 
     else {
         if (result.success()) {
           if (result.content.empty()) {
-            Display::drawCenteredString(58, "Answer is empty", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
+            Display::drawCenteredString(68, "Answer is empty", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
             //DrawUtils::drawLines(5, 75, TextUtils::stringFit(prompt, 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 2); 
           } else {
-            Display::drawCenteredString(58, "Response:", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
-            DrawUtils::drawLines(5, 75, TextUtils::stringFit(answer, 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 2); 
+            Display::drawCenteredString(68, "Response:", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
+            DrawUtils::drawLines(5, 85, TextUtils::stringFit(answer, 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 2); 
           }
         } else if (result.error == MistralError::INVALID_API_KEY) {
-          Display::drawCenteredString(58, "Invalid API-KEY", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
+          Display::drawCenteredString(68, "Invalid API-KEY", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
         } else if (result.error == MistralError::CONNECTION_ERROR) {
-          Display::drawCenteredString(58, "connection error", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
+          Display::drawCenteredString(68, "connection error", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
         } else if (result.error == MistralError::UNKNOWN_ERROR) {
-          Display::drawCenteredString(58, "UNKNOWN ERROR", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
+          Display::drawCenteredString(68, "UNKNOWN ERROR", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
+          DrawUtils::drawLines(5, 85, TextUtils::stringFit("probably because I suck at cpp", 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 1); 
         } else {
-          Display::drawCenteredString(58, "unhandled error", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
-          DrawUtils::drawLines(5, 75, TextUtils::stringFit("because I am to lazy to write handlers for all errors :because I am to lazy to write handlers for all errors :3", 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 2); 
+          Display::drawCenteredString(68, "unhandled error", CURRENT_THEME->primary[10], Display::alpha, &Font6x8, 2);
+          DrawUtils::drawLines(5, 85, TextUtils::stringFit("because I am to lazy to write handlers for all errors :3", 19), CURRENT_THEME->primary[8], Display::alpha, &Font6x8, 2); 
         }
     }
 }

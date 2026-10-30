@@ -32,7 +32,7 @@ void Display::wakeUp() {
 
     if (displaySleeping) {
         displaySleeping = false;
-        DEV_SET_PWM(90);
+        DEV_SET_PWM(10);
     }
 }
 

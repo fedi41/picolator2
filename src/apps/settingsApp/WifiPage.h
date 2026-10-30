@@ -68,8 +68,8 @@ public:
 
         Display::clear(CURRENT_THEME->surface[2]);
 
-        Display::drawString(0, 5, "SSID: " + ssid, (pointer == 0 ? Display::alpha : 0x0000), (pointer == 1 ? Display::alpha : 0x0000), false, &Font6x8, 1);
-        Display::drawString(0, 20, "PASS: " + password, (pointer == 1 ? Display::alpha : 0x0000), (pointer == 0 ? Display::alpha : 0x0000), false, &Font6x8, 1);
+        Display::drawString(0, 15, "SSID: " + ssid, (pointer == 0 ? Display::alpha : 0x0000), (pointer == 1 ? Display::alpha : 0x0000), false, &Font6x8, 1);
+        Display::drawString(0, 30, "PASS: " + password, (pointer == 1 ? Display::alpha : 0x0000), (pointer == 0 ? Display::alpha : 0x0000), false, &Font6x8, 1);
 
         if (keboardActive) {
             

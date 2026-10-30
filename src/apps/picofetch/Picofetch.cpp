@@ -71,13 +71,13 @@ void Picofetch::render() {
     Display::clear(Colors::black);
  
     // HEADING
-    Display::drawCenteredString(11, "PICOFETCH", Colors::red, Display::alpha, &Font6x8, 4, -3);
-    Display::drawCenteredString(8, "PICOFETCH",  Colors::white, Display::alpha, &Font6x8, 4, -6);
+    Display::drawCenteredString(21, "PICOFETCH", Colors::red, Display::alpha, &Font6x8, 4, -3);
+    Display::drawCenteredString(18, "PICOFETCH",  Colors::white, Display::alpha, &Font6x8, 4, -6);
  
-    int y = 55;
+    int y = 65;
     const int rowHeight = 20;     
     const int labelX = 10;
-    const int valueX = 110;
+    const int valueX = 100;
  
     char buf[32];
  
