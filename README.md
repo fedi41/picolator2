@@ -12,6 +12,9 @@ PICOLATOR is a handheld device powered by a Raspberry Pi Pico, featuring a custo
 - App manager 
 - Multiple color themes (wirh Tailwind colors)
 - Log system 
+- Internet acces (cant be used for anything at the time)
+- AI chat (in development)
+
 
 ---
 
@@ -34,9 +37,18 @@ U can manage different things here :3
 Features:
 - Theme selection
 - Feature toggles
-
-coming up:
 - wifi settings
+- ai chat settings (in development)
+
+### Picofetch
+
+A simple fetch for the picolator xD.
+It shows some data about the chip and the firmware, as well as the internet connection status.
+
+### AI chat
+
+In development ;D
+ahh its complicated.
 
 ---
 
